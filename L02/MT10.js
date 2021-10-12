@@ -1,4 +1,4 @@
-let input = 49;
+let input = 52;
 
 
 let passedPowers = -1;
@@ -14,25 +14,9 @@ let suit = input - (passedPowers * 4);
 
 let power = "";
 let suitName = "";
-
-if (passedPowers === 0) {
-    power = "2";
-} else if (passedPowers === 1) {
-    power = "3";
-} else if (passedPowers === 2) {
-    power = "4";
-} else if (passedPowers === 3) {
-    power = "5";
-} else if (passedPowers === 4) {
-    power = "6";
-} else if (passedPowers === 5) {
-    power = "7";
-} else if (passedPowers === 6) {
-    power = "8";
-} else if (passedPowers === 7) {
-    power = "9";
-} else if (passedPowers === 8) {
-    power = "10";
+//could be optimised with calculation about the (passedPowers - 2)
+if (passedPowers < 9) {
+    power = passedPowers + 2;
 } else if (passedPowers === 9) {
     power = "Jack";
 } else if (passedPowers === 10) {
