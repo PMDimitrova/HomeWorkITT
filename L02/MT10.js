@@ -1,5 +1,4 @@
-let input = 52;
-
+let input = 47;
 
 let passedPowers = -1;
 
