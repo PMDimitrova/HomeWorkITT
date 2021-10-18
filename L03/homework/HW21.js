@@ -1,11 +1,13 @@
 let n = 47;
 
-let power = n % 12;
 let suit = n % 4;
+let power = (n - suit)/ 4 + 1; // first part is finding all the powers that have passed, +1 is the current power
+
+let firstSuit = suit; //new variable so that we can change it later in the for loop, without loosing the initial card suit
 
 for (let i = power; i <= 13; i++) {
-    for (let j = suit; j <= 4; j++) {
-        switch (power) {
+    for (let j = firstSuit; j <= 4; j++) {
+        switch (i) {
             case 1:
                 process.stdout.write("2 ");
                 break;
@@ -46,7 +48,7 @@ for (let i = power; i <= 13; i++) {
                 process.stdout.write("Ace ");
                 break;
         }
-        switch (suit) {
+        switch (j) {
             case 1:
                 process.stdout.write("Spade");
                 break;
@@ -60,6 +62,7 @@ for (let i = power; i <= 13; i++) {
                 process.stdout.write("Club");
                 break;
         }
+        console.log();
+        firstSuit = 1; // we are setting the next cycle to start from 1 so that every suit is listed
     }
-    console.log();
 }
