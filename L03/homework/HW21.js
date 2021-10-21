@@ -1,4 +1,4 @@
-let n = 47;
+let n = 2;
 
 let suit = n % 4;
 let power = (n - suit)/ 4 + 1; // first part is finding all the powers that have passed, +1 is the current power
