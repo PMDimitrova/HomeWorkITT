@@ -18,4 +18,3 @@ for (let row = 0; row < table.length; row++) {
 
 console.log(centralDiagonal);
 
-//todo : check for the second diagonal!!!! do it with row+col === length of matrix - 1
