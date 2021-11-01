@@ -1,50 +1,42 @@
-//todo finish it!
-
-
 function littleCrossword(firstWord, secondWord) {
     let hasMatch = false;
+    let firstWordIndex = -1;
+    let secondWordIndex = -1;
 
-    let longerWord = '';
-    let shorterWord = '';
-    let inOrderOfInput = true;
-
-    if (firstWord.length > secondWord.length) {
-        longerWord = firstWord;
-        shorterWord = secondWord;
-    } else {
-        longerWord = secondWord;
-        shorterWord = firstWord;
-        inOrderOfInput = false;
-    }
-
-    let indexOfLongerWord = -1
-    let indexOfShorterWord = -1
-
-    for (let i = 0; i < longerWord.length; i++) {
-        if (shorterWord.includes(longerWord.charAt(i))) {
-            indexOfLongerWord = i;
-            indexOfShorterWord = shorterWord.indexOf(longerWord.charAt(i));
+    for (let i = 0; i < firstWord.length; i++) {
+        let indexInSecond = secondWord.indexOf(firstWord.charAt(i));
+        if (indexInSecond !== -1) {
             hasMatch = true;
+            firstWordIndex = i;
+            secondWordIndex = indexInSecond;
             break;
         }
     }
 
-    let indexOfFirst = inOrderOfInput ? indexOfLongerWord : indexOfShorterWord;
-    let indexOfSecond = inOrderOfInput ? indexOfShorterWord : indexOfLongerWord;
+    if (hasMatch) {
+        let rows = secondWord.length;
+        let cols = firstWord.length;
 
-    if (hasMatch){
-        let output = new Array(secondWord.length - 1);
-        for (let row = 0; row < secondWord.length; row++) {
-            output[row] = (new Array(firstWord.length - 1));
-            for (let col = 0; col < output[row].length; col++) {
-                output[row][col] = "x";
+        let outputArray = new Array(rows);
+
+        for (let i = 0; i < rows; i++) {
+            outputArray[i] = new Array(cols);
+            for (let j = 0; j < cols; j++) {
+                if (j === firstWordIndex){
+                    outputArray[i][j] = secondWord.charAt(i);
+                } else if(i === secondWordIndex){
+                    outputArray[i][j] = firstWord.charAt(j);
+                } else {
+                    outputArray[i][j] = '.';
+                }
             }
-            return output;
         }
-    }else {
-        return "The words does NOT have a matching syllable.";
+
+        return outputArray;
+    } else {
+        return 'There is NO char matching between the two words.';
     }
 }
-
-// console.log(littleCrossword("машина", "шапка"));
-console.log(littleCrossword("cal", "pas"));
+//според мен условието е грешно зададено, защото първия мач на "машина" и "шапка" би трябвало да е буквата А
+console.table(littleCrossword("машина", "винт"));
+// console.table(littleCrossword("cal", "pas"));
