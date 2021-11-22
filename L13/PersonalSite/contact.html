@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Me</title>
+    <style>
+        #first {
+            width: 50%;
+            height: 100vh;
+            margin: auto;
+        }
+        body{
+            background: rgb(131,58,180);
+            background: linear-gradient(90deg, rgba(131,58,180,0.700717787114846) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(252,176,69,1) 100%);
+            font-family: sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 5px;
+            overflow: hidden;
+            background: rgb(252,176,69);
+            background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(131,58,180,0.700717787114846) 100%);
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            font-weight: bold;
+            padding: 15px;
+            text-decoration: none;
+        }
+
+        label:not(.radioCheck) {
+            display: inline-block;
+            width: 120px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="first">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutMe.html">About me</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="competencies.html">Competencies</a></li>
+                <li><a href="contact.html">Contact me</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h2>Contact:</h2>
+            <h4>If you have some question, or you want to share a career opportunity with me, please fill out the following form:</h4>
+        </header>
+
+        <div>
+            <form>
+                <label for="name">Your name:</label>
+                <input type="text" id="name" name="name" size="25"><br>
+                <label for="mail">Your e-mail:</label>
+                <input type="text" id="mail" name="mail" size="25"><br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" cols="45"> </textarea><br>
+                <label for="opinion">You think this site is:</label>
+                <select id="opinion" name="opinion">
+                    <option value="-">Please select:</option>
+                    <option value="like">I like your page!</option>
+                    <option value="dont-like">I don't like your page.</option>
+                    <option value="no-opinion">I prefer not to share my opinion.</option>
+                </select><br>
+                <input type="submit" value="Send the message">
+            </form>
+        </div>
+        <footer>
+            <!--    todo   -->
+        </footer>
+    </div>
+</body>
+</html>

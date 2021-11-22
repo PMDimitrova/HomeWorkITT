@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        #first {
+            width: 50%;
+            height: 100vh;
+            margin: auto;
+        }
+        body{
+            background: rgb(131,58,180);
+            background: linear-gradient(90deg, rgba(131,58,180,0.700717787114846) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(252,176,69,1) 100%);
+            font-family: sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 5px;
+            overflow: hidden;
+            background: rgb(252,176,69);
+            background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(131,58,180,0.700717787114846) 100%);
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            font-weight: bold;
+            padding: 15px;
+            text-decoration: none;
+        }
+        .container {
+            padding: 10px;
+        }
+
+        .child {
+            width: 25%;
+            float: left;
+            padding: 10px;
+        }
+        .sec-container {
+            padding: 10px;
+        }
+
+        .sec-child {
+            width: 25%;
+            float: revert;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="first">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="aboutMe.html">About me</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="competencies.html">Competencies</a></li>
+                <li><a href="contact.html">Contact me</a></li>
+            </ul>
+        </nav>
+        <header>
+            <h2>Here's the visual side of my passions:</h2>
+        </header>
+        <div>
+<!--            todo: make the containers in grid-->
+            <div class="container">
+                <div class="child">
+                    <img src="data/skiing.jpg" alt="woman-skiing" width="250px">
+                    <p>First things first: my love for skiing. I really enjoy the views from the mountain top and the adrenaline going down!</p>
+                </div>
+                <div class="child">
+                    <img src="data/crossfit.jpg" alt="woman-with-barbell" width="250px">
+                    <p>Second big part of me is CrossFit. I love the variety, the adrenalin and the strength, that comes as a result.</p>
+                </div>
+            </div>
+            <div class="sec-container">
+                <div class="sec-child">
+                    <img src="data/windsurfing.jpg" width="250" alt="woman-windsurfing">
+                    <p>Next I want to show you the newest addition to the sports in house: windsurfing. It combines to of my favorite things in the world: sea and speed!</p>
+                </div>
+                <div class="sec-child">
+                    <img src="data/library.jpg" width="250" alt="library">
+                    <p>And last, but not least - the way I envision a rest day - cosy home library with a good cup of coffee and interesting book.</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <ul>
+                <li><a href="contact.html">Send me a message</a></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

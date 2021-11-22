@@ -1,0 +1,11 @@
+arch:
+-everything should be wrapped in divs for the css
+-footer should be available in all sections except index and should link to the contact me form
++header - nav panel
+
+styling:
++gradient in css as a background drop for all of the pages (?)
+-align the photos in the gallery 2x2 grid
++table in the competencies - margin and borders in css
+
+get the css out of the html!
