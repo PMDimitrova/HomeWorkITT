@@ -3,25 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Palmina's Personal Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        #first {
+        #wrapper {
             width: 50%;
             height: 100vh;
             margin: auto;
+            /*background-color: antiquewhite;*/
+            /*opacity: 0.5;*/
         }
-        body{
-            background: rgb(131,58,180);
-            background: linear-gradient(90deg, rgba(131,58,180,0.700717787114846) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(252,176,69,1) 100%);
-            font-family: sans-serif;
+
+        body {
+            background: rgb(131, 58, 180);
+            background: linear-gradient(90deg, rgba(131, 58, 180, 0.700717787114846) 0%, rgba(253, 29, 29, 0.34217436974789917) 23%, rgba(252, 176, 69, 1) 100%);
+            font-family: 'Montserrat Alternates', sans-serif;
+            color: #461673;
         }
+
         ul {
-              list-style-type: none;
-              margin: 0;
-              padding: 5px;
-              overflow: hidden;
-              background: rgb(252,176,69);
-              background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(131,58,180,0.700717787114846) 100%);
-          }
+            list-style-type: none;
+            margin: 0;
+            padding: 5px;
+            overflow: hidden;
+            background: rgb(252, 176, 69);
+            background: linear-gradient(90deg, rgba(252, 176, 69, 1) 0%, rgba(253, 29, 29, 0.34217436974789917) 23%, rgba(131, 58, 180, 0.700717787114846) 100%);
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-evenly;
+        }
 
         li {
             float: left;
@@ -32,13 +43,17 @@
             font-weight: bold;
             padding: 15px;
             text-decoration: none;
+        }
 
+        .welcome h1{
+            text-align: center;
         }
 
     </style>
 </head>
 <body>
-    <div id="first">
+<div id="wrapper">
+    <div class="navigation">
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -48,14 +63,19 @@
                 <li><a href="contact.html">Contact me</a></li>
             </ul>
         </nav>
+    </div>
+    <div class="welcome">
         <h1>Welcome to my personal space!</h1>
         <h2>My name is Palmina and I'm a wanna be front-end dev</h2>
         <h3>If you want to know more about me,</h3>
-        <p>&#x2192; check my <a href="aboutMe.html">basic info</a> </p>
+    </div>
+    <div class="links">
+        <p>&#x2192; check my <a href="aboutMe.html">basic info</a></p>
         <p>&#x2192; see some <a href="gallery.html">pictures</a> of me and my interests</p>
         <p>&#x2192; check my <a href="competencies.html">competencies</a>, completed courses and projects</p>
-        <p>&#x2192; or just <a href="contact.html">contact me</a> if you have any questions or just want to talk about carrier opportunities</p>
+        <p>&#x2192; or just <a href="contact.html">contact me</a> if you have any questions or just want to talk about
+            carrier opportunities</p>
     </div>
-
+</div>
 </body>
 </html>

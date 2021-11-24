@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About me</title>
+    <title>About Me</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        #first {
+        #wrapper {
             width: 50%;
             height: 100vh;
             margin: auto;
+
         }
         body{
             background: rgb(131,58,180);
             background: linear-gradient(90deg, rgba(131,58,180,0.700717787114846) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(252,176,69,1) 100%);
-            font-family: sans-serif;
-            text-align: justify;
-
+            font-family: 'Montserrat Alternates', sans-serif;
+            text-align: center;
+            color: #461673;
         }
         ul {
             list-style-type: none;
@@ -23,6 +27,9 @@
             overflow: hidden;
             background: rgb(252,176,69);
             background: linear-gradient(90deg, rgba(252,176,69,1) 0%, rgba(253,29,29,0.34217436974789917) 23%, rgba(131,58,180,0.700717787114846) 100%);
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-evenly;
         }
 
         li {
@@ -36,32 +43,55 @@
             text-decoration: none;
 
         }
+        /*.me-photo{*/
+        /*    border-radius: 10px;*/
+        /*}*/
+
+        .description{
+            display: flex;
+        }
+        /*.me-photo, .about-me{*/
+        /*    !*width: 20%;*!*/
+        /*    justify-content: space-between;*/
+        /*}*/
+
     </style>
 </head>
 <body>
-    <div id="first">
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aboutMe.html">About me</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="competencies.html">Competencies</a></li>
-                <li><a href="contact.html">Contact me</a></li>
-            </ul>
-        </nav>
+    <div id="wrapper">
+        <div class="navigation">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="aboutMe.html">About me</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="competencies.html">Competencies</a></li>
+                    <li><a href="contact.html">Contact me</a></li>
+                </ul>
+            </nav>
+        </div>
         <h2>Hi again! I'm happy to see you're interested in me!</h2>
-        <img src="data/about-me-photo.jpg" alt="picture-of-me">
-        <p id="pic-description">That's me!</p>
-        <p>I'm 31 years old and switching from my long-term love for accountancy to my newly found love for front-end developing.</p>
-        <p>Currently I'm learning JavaScript and the ways it can make every website looking good and be exciting for the user.
-            If you want to know more about what I've learned up to now - please follow <a href="competencies.html">this link.</a></p>
-        <p>My other interests outside the tech-department are mainly sports - ski, swimming, CrossFit and the most recent one -
-        windsurfing. But I do enjoy some quiet time as well. As long as it's spent with a good book and a cup of coffee.</p>
-        <footer>
-            <ul>
-                <li><a href="contact.html">Send me a message</a></li>
-            </ul>
-        </footer>
+        <div class="description">
+            <div class="me-photo">
+                <img src="data/about-me-photo.png" alt="picture-of-me">
+            </div>
+            <div class="about-me">
+                <p id="pic-description">That's me!</p>
+                <p>I'm 31 years old and switching from my long-term love for accountancy to my newly found love for front-end developing.</p>
+                <p>Currently I'm learning JavaScript and the ways it can make every website look good and be exciting for the user.
+                    If you want to know more about what I've learned up to now - please follow <a href="competencies.html">this link.</a></p>
+                <p>My other interests outside the tech-department are mainly sports - ski, swimming, CrossFit and the most recent one -
+                    windsurfing. But I do enjoy some quiet time as well. As long as it's spent with a good book and a cup of coffee.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <footer>
+                <ul>
+                    <li><a href="contact.html">Send me a message</a></li>
+                </ul>
+            </footer>
+        </div>
+
     </div>
 </body>
 </html>
