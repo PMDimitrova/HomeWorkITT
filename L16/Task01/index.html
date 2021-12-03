@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task - random picture</title>
+    <style>
+        .picture-of-dog{
+            height: 40%;
+            justify-content: center;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+        }
+        .heading{
+            display: flex;
+            height: 45px;
+            justify-content: center;
+            margin-top: 150px;
+        }
+        h1.greeting{
+            height: 45px;
+            margin: 0;
+        }
+        .greeting {
+            flex-direction: row;
+        }
+        .picture-of-dog{
+            /*background-color: #F56600;*/
+            /*width: 300px;*/
+            display: flex;
+        }
+        #inner-pic-wrapper{
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1 class="greeting">You sad?</h1>
+            <button id="getAnimalBtn" class="greeting" type="button">Click!</button>
+        </div>
+        <div class="picture-of-dog">
+            <h3>We'll make your day greater in a sec...</h3>
+            <div id="inner-pic-wrapper">
+                <img id="petImage" src="getImage.js" alt="dog-image">
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('getAnimalBtn').addEventListener("click", putADogMeme);
+
+        function changeVisibility() {
+            document.querySelector('h3').parentElement.removeChild(document.querySelector('h3'));
+            document.querySelector('#inner-pic-wrapper').style.visibility = 'visible';
+        }
+
+        function putADogMeme() {
+            console.log('btn clicked');
+
+            let imageEl = document.getElementById('petImage');
+            imageEl.src = `./images/${pickUpRandomImage()}.jpg`;
+            changeVisibility();
+        }
+
+        function pickUpRandomImage(){
+            let num = Math.random() * 10;
+            return Math.round(num);
+        }
+
+    </script>
+</body>
+</html>
