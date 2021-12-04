@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 02</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Please choose one:</h2>
+        <label>
+            <select name="drop-down-menu" id="selectSymbol">
+                <option value="%">Ampersand - %</option>
+                <option value="\">Backslash - \</option>
+                <option value="~">Tilde - ~</option>
+                <option value="|">Vertical slash - |</option>
+            </select>
+        </label>
+    </div>
+    <script>
+        function printSelected(event) {
+            console.log(event.target.value);
+        }
+
+        document.getElementById('selectSymbol').addEventListener('change', printSelected);
+    </script>
+</body>
+</html>

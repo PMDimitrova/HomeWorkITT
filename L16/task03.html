@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 03</title>
+    <style>
+        #no-output {
+            border: 1px solid red;
+            width: 90px;
+            height: 30px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin: 65px;
+        }
+        #result{
+            display: flex;
+        }
+        #here, #upper-heading{
+            margin: 0px;
+        }
+        #output{
+            border: 1px solid green;
+            width: 90px;
+            height: 30px;
+            visibility: hidden;
+            text-align: center;
+            line-height: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="heading">
+            <h2 id="upper-heading">Press a key on the keyboard <br> and you'll see it's code</h2>
+        </div>
+        <div id="result">
+            <h2 id="here">HERE: </h2>
+            <div id="no-output"></div>
+            <div id="output"></div>
+        </div>
+    </div>
+    <script>
+        let removed = false;
+
+        function displayKeyCode(event) {
+            let key = event.code;
+            if (!removed){
+                document.getElementById('no-output').parentNode.removeChild(document.getElementById('no-output'));
+                removed = true;
+                document.getElementById('output').style.visibility = 'visible';
+            }
+            document.getElementById('output').innerText = key;
+        }
+        document.addEventListener('keydown', displayKeyCode);
+    </script>
+</body>
+</html>
