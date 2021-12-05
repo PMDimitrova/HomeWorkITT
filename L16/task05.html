@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 05</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            font-family: Arial, serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 60vh;
+            width: 40%;
+            background-color: #ffe6f3;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+        }
+
+        .input-box {
+            width: 50px;
+        }
+
+        #label-red {
+            color: red;
+        }
+
+        #label-blue {
+            color: dodgerblue;
+        }
+
+        #label-green {
+            color: forestgreen;
+        }
+
+        .single-box-red {
+            margin: 10px;
+            opacity: 1;
+            transition: opacity 1s;
+        }
+
+        .single-box-red.fade {
+            opacity: 0;
+        }
+
+        .single-box-green {
+            margin: 10px;
+            opacity: 1;
+            transition: opacity 1s;
+        }
+
+        .single-box-green.fade {
+            opacity: 0;
+        }
+
+        .single-box-blue {
+            margin: 10px;
+            opacity: 1;
+            transition: opacity 1s;
+        }
+
+        .single-box-blue.fade {
+            opacity: 0;
+        }
+
+        .submit-btn {
+            margin: 10px;
+            opacity: 1;
+            transition: opacity 1s;
+        }
+
+        .submit-btn.fade {
+            opacity: 0;
+        }
+
+        #result{
+            margin-top: 45px;
+            width: 100px;
+            height: 100px;
+            border: 3px solid white;
+            visibility: hidden;
+            border-radius: 10px;
+        }
+        h2, #submit-btn {
+            color: #CD7FA8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="heading">
+        <h2>Fill values for:</h2>
+    </div>
+    <div class="input-form">
+        <form id="whole-form">
+            <div class="single-box-red fade">
+                <label for="red-input" id="label-red">Red</label>
+                <input type="number" class="input-box" id="red-input" name="red-input">
+            </div>
+            <div class="single-box-green fade">
+                <label for="green-input" id="label-green">Green</label>
+                <input type="number" class="input-box" id="green-input" name="green-input">
+            </div>
+            <div class="single-box-blue fade">
+                <label for="blue-input" id="label-blue">Blue</label>
+                <input type="number" class="input-box" id="blue-input" name="blue-input">
+            </div>
+            <input class="submit-btn fade" id="submit-btn" type="submit" value="Show me the color!">
+        </form>
+    </div>
+    <div id="result">
+        <h4></h4>
+    </div>
+</div>
+
+<script>
+    displayFadedInput('single-box-red', 500);
+    displayFadedInput('single-box-green', 800);
+    displayFadedInput('single-box-blue', 1100);
+    displayFadedInput('submit-btn', 1400);
+
+    let red = -1;
+    let green = -1;
+    let blue = -1;
+
+    const form = document.getElementById('whole-form');
+    console.log(form);
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const data = new FormData(form);
+
+        red = checkUserInput(data.get('red-input'));
+        green = checkUserInput(data.get('green-input'));
+        blue = checkUserInput(data.get('blue-input'));
+
+        displayChosenColor(red, green, blue);
+
+        function checkUserInput(input) {
+            if (input < 0 || input > 255) {
+                return 0;
+            }
+            return input;
+        }
+
+        function displayChosenColor(red, green, blue) {
+            let resultEl = document.getElementById('result');
+            resultEl.style.visibility = 'visible';
+            resultEl.style.backgroundColor = `rgb(${red}, ${green}, ${blue}`;
+            document.getElementsByTagName('h4')[0].innerText = `You chose RGB ${red} ${green} ${blue}:`;
+        }
+        event.target.reset();
+    });
+
+    function displayFadedInput(className, msecs) {
+        setTimeout(() => {
+            document.getElementsByClassName(className)[0].classList.toggle('fade');
+        }, msecs);
+    }
+</script>
+</body>
+</html>
