@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 06</title>
+    <style>
+        body {
+            display: flex;
+            font-family: Arial, serif;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+            height: 45vh;
+            background-color: #d3f3ff;
+            border: 4px outset #7797a8;
+        }
+
+        .heading {
+            margin: 20px;
+        }
+
+        .first-element, .second-element {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px;
+        }
+
+        #form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #submitBtn {
+            width: 60px;
+            align-self: flex-end;
+            padding-right: 5px;
+        }
+        .comment {
+            height: 14px;
+            width: 30%;
+            align-self: flex-end;
+            font-weight: bold;
+            font-size: small;
+            color: #F9001B;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h2>Input length validation</h2>
+        </div>
+        <div class="input-form">
+            <form id="form">
+                <div class="first-element">
+                    <label for="first">First element:</label>
+                    <input id="first" name="first">
+                </div>
+                <div class="comment" id="firstComment"></div>
+                <div class="second-element">
+                    <label for="second">Second element:</label>
+                    <input id="second" name="second">
+                </div>
+                <div class="comment" id="secondComment"></div>
+                <input id="submitBtn" type="submit" value="Check!">
+            </form>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('form');
+
+        let firstInputIsOkay = true;
+        let secondInputIsOkay = true;
+
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            clearComments();
+
+            const data = new FormData(form);
+            let firstInput = data.get('first');
+            let secondInput = data.get('second');
+
+            firstInputIsOkay = checkElement(firstInput);
+            secondInputIsOkay = checkElement(secondInput);
+
+            createOutputStyling(firstInputIsOkay, 'first');
+            createOutputStyling(secondInputIsOkay, 'second');
+        });
+
+
+        function createOutputStyling(booleanResult, elementToChange) {
+            let element = document.getElementById(elementToChange);
+
+            if (booleanResult) {
+                element.style.border = '2px solid #71E220';
+            } else {
+                element.style.border = '2px solid #F9001B';
+                element.parentElement.nextElementSibling.innerText = 'Invald input!';
+            }
+        }
+
+        function checkElement(input) {
+            return ((input.length > 2) && (input.length < 10));
+        }
+
+        function clearComments(){
+            document.getElementsByClassName('comment')[0].innerHTML = '';
+            document.getElementsByClassName('comment')[1].innerHTML = '';
+        }
+
+    </script>
+</body>
+</html>
