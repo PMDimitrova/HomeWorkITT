@@ -15,6 +15,7 @@ function displayHeading() {
     headingEl.style.color = '#4D416E';
     headingEl.style.textDecoration = 'underline';
 }
+
 function displayInputBox() {
     let inputBox = document.createElement('input');
     inputBox.type = 'text';
@@ -22,48 +23,28 @@ function displayInputBox() {
     inputBox.style.color = '#B8312C';
     inputBox.style.height = '20px';
     inputBox.style.width = '150px';
+    inputBox.style.onfo
     document.getElementsByClassName('input-container')[0].appendChild(inputBox);
 }
+
 function displaySubmitButton(){
     let submitBtn = document.createElement('input');
     submitBtn.type = 'submit';
     submitBtn.id = 'submitBtn';
-    submitBtn.style = `
-        display:inline-block;
-        padding:0.35em 1.2em;
-        border:1px solid #4D416E;
-        margin:0 0.3em 0.3em 0;
-        border-radius:0.2em;
-        box-sizing: border-box;
-        text-decoration:none;
-        color:#4D416E;
-        text-align:center;`;
 
     document.getElementsByClassName('input-container')[0].appendChild(submitBtn);
 
     document.getElementById('submitBtn').addEventListener('click', createNewBuyItem);
 }
 
-
 function createNewBuyItem(event) {
     let userInput = event.target.parentElement.firstChild.value;
     if(userInput !== ''){
         let newLine = document.createElement('div');
-        newLine.className = 'grocery-item-line';
-        newLine.style = `
-            display:flex;
-            flex-direction: row;`;
+        newLine.classList.add('grocery-item-line', 'unchecked-item');
 
         let checkBox = document.createElement('div');
         checkBox.className = 'unchecked-box';
-        checkBox.style = `
-            width: 20px;
-            height: 20px;
-            padding-right: 5px;
-            background-image: url("./pictures/unchecked.png");
-            background-repeat: no-repeat;
-            color: #B8312C;
-            `;
 
         newLine.appendChild(checkBox);
 
@@ -72,13 +53,30 @@ function createNewBuyItem(event) {
 
         newLine.appendChild(newItem);
 
-        document.getElementsByClassName('list-container')[0].appendChild(newLine);
-        console.log(newItem);
+        newLine.addEventListener('click', () => {
+            if(newLine.classList.contains('checked-item')){
+                checkBox.classList.remove('checked-box');
+                checkBox.classList.add('unchecked-box');
+            }else if(newLine.classList.contains('unchecked-item')){
+                checkBox.classList.add('checked-box');
+                checkBox.classList.remove('unchecked-box');
+            }
+            newLine.classList.toggle('checked-item');
+            newLine.classList.toggle('unchecked-item');
 
+        });
+
+        let delBtn = document.createElement('div');
+        delBtn.classList.add('delBtn');
+        delBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            event.target.parentNode.remove();
+        });
+
+        newLine.appendChild(delBtn);
+
+        document.getElementsByClassName('list-container')[0].appendChild(newLine);
+
+        document.getElementById('inputField').value = '';
     }
 }
-
-//todo: 1. change the color and appropriate png for the new items added to the list;
-// 2. find a way to add the items to an array to save it and prevent it from erasing when the page's refreshed
-// 3. make a function to check/uncheck groceries
-// 4. make a button to delete item
