@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>THE Fitness Shop</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container-wrapper">
+    <div id="header">
+        <div id="logo">
+            <img id="logo-lifter" src="src/pictures/logo-weightlifter.png" alt="weightlifter">
+            <div id="shop-name">THE Fitness Shop</div>
+        </div>
+        <div id="nav">
+            <ul class="ul-items">
+                <li><a href="#catalogue">Catalogue</a></li>
+                <li><a href="#saved">Saved</a></li>
+                <li><a href="#cart">Cart</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="custom-select">
+        <select>
+            <option value="filter">Filter by type</option>
+            <option value="kettlebell-dumbbells">Kettlebells & Dumbbells</option>
+            <option value="barbells">Barbells</option>
+            <option value="others">Others</option>
+        </select>
+    </div>
+    <div id="catalogue" class="catalogue-container">
+        this is the catalogue page
+        <!--                add content with js-->
+        <!--                <div class="item-box">-->
+        <!--                    <img src="https://contents.mediadecathlon.com/p1183113/k4270f6b3f3e599923cfdb5ae77802b8f/1183113_default.jpg?format=auto&quality=60&f=800x0" alt="fitness-equipment">-->
+        <!--                    <div><h3>Item name</h3></div>-->
+        <!--                    <h4>Item price</h4>-->
+        <!--                    <div class="item-buttons">-->
+        <!--                        <button>Buy</button>-->
+        <!--                        <button>Save for later</button>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+    </div>
+    <div id="saved" class="saved-container">
+        <!--                add content with js-->
+        this is the page with the liked items
+    </div>
+    <div id="cart" class="cart-container">
+        <!--                add content with js-->
+        this is the cart page
+    </div>
+
+
+    <div class="footer-container">
+        <footer>
+            Contact form
+        </footer>
+    </div>
+</div>
+<script src="src/model/app.js"></script>
+<script src="src/model/User.js"></script>
+<script src="src/model/FitnessItem.js"></script>
+<script src="src/model/ItemsManager.js"></script>
+<script src="src/equipment.js"></script>
+</body>
+</html>
