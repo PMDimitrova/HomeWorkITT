@@ -1,0 +1,77 @@
+body{
+    display: flex;
+    justify-content: center;
+}
+.container-wrapper {
+    width: 1100px;
+    border: 2px solid #7f9bbd;
+    display: flex;
+    flex-direction: column;
+}
+#header{
+    width: 100%;
+    height: 100px;
+    border: 2px solid #bedaef;
+}
+
+.body-container{
+    display: flex;
+    flex-direction: row;
+}
+/*Aside Nav Bar*/
+#aside-nav {
+    border: 2px solid #7f9bbd;
+    width: 100px;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.ul-nav{
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li a {
+    text-decoration: none;
+    color: #7f9bbd;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2px;
+}
+li {
+    margin: 8px;
+}
+
+/*Main Container Products*/
+#main-container{
+    border: 2px solid #b6a47f;
+    width: 1000px;
+}
+
+#catalogue, #home-page{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+#footer-container {
+    width: 100%;
+    height: 50px;
+    border: 2px solid  #b6a47f;
+}
+
+/*Single item styles*/
+.card-item{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #bedaef;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+.picture-item{
+    width: 75px;
+}

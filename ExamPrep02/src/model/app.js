@@ -3,7 +3,7 @@ window.onload = function () {
     let saved = document.getElementById('saved');
     let cart = document.getElementById('cart');
 
-    let filterField = document.getElementById('custom-select');4
+    let filterField = document.getElementById('custom-select');
 
     let user = new User();
     let manager = new ItemsManager();
