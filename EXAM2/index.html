@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My cookbook</title>
+    <link rel="stylesheet" href="src/styles/styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="header-wrapper">
+            <div id="logo">
+                <img id="logo-cooker" src="./src/pictures/logo.png" alt="cook">
+            </div>
+            <div id="nav">
+                <ul class="ul-items">
+                    <li><a href="#all-recipes">Всички рецепти</a></li>
+                    <li><a href="#favorites">Любими рецепти</a></li>
+                    <li><a href="#create">Създай рецепта</a></li>
+                    <li><a href="#profile">Моят Профил</a></li>
+                </ul>
+            </div>
+            <div id="profile-pic-wrapper">
+                <img id="profile-pic" src="src/pictures/guest.png" alt="profile">
+            </div>
+        </div>
+        <div class="body-wrapper">
+            <div class="rec-lists" id="all-recipes">всички рецепти
+<!--            Demo card:
+                <div class="card">-->
+<!--                    <div class="rec-image-wrapper">-->
+<!--                        <a href="http://allrecipes.com/Recipe/Ginger-Champagne/Detail.aspx" target="_blank">-->
+<!--                            <img class="rec-image" src="http://img.recipepuppy.com/1.jpg" alt="dish-picture">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    <h3 class="rec-title">Here goes the title</h3>-->
+<!--                    <div class="rec-ingredients">Eggs, butter, etc</div>-->
+<!--                    <div class="buttons-box">-->
+<!--                        <button class="rec-buttons" id="like-btn">Добави в любими</button>-->
+<!--                        <button class="rec-buttons" id="cook-btn">Сготви</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+            <div class="rec-lists" id="favorites">любими рецепти</div>
+            <div id="create">създай рецепта</div>
+            <div id="profile">моят профил
+<!--            Demo page for my profile-->
+<!--            <div id="user-form" class="user-form">-->
+<!--                <div class="name-box input-box">-->
+<!--                    <label for="user-name">Име: </label>-->
+<!--                    <input id="user-name" type="text" >-->
+<!--                </div>-->
+<!--                <div class="age-box input-box">-->
+<!--                    <label for="user-age">Години: </label>-->
+<!--                    <input id="user-age" type="number" >-->
+<!--                </div>-->
+<!--                <div class="address-box input-box">-->
+<!--                    <label for="user-address">Адрес: </label>-->
+<!--                    <input id="user-address" type="text" >-->
+<!--                </div>-->
+<!--                <div class="picture-box input-box">-->
+<!--                    <label for="user-picture">Снимка: </label>-->
+<!--                    <input id="user-picture" type="text" >-->
+<!--                </div>-->
+<!--                <button id="save-btn">Запази</button>-->
+<!--            </div>-->
+
+<!--                Demo for table with Recipes:-->
+
+            </div>
+            <div id="error-page"><div>НЯМА ТАКАВА СТРАНИЦА</div></div>
+        </div>
+        <div class="footer-wrapper">
+            <div class="created-by">Website created by: Palmina Dimitrova</div>
+            <div class="created-by">All rights reserved &#169 2021</div>
+        </div>
+
+    </div>
+    <script src="./src/app.js"></script>
+    <script src="./src/User.js"></script>
+    <script src="./src/Recipe.js"></script>
+    <script src="./src/RecipesManager.js"></script>
+    <script src="src/recipes.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+- make the logo of the user clickable
+- make the cook logo clickable
+- make the logic behind the change the profile picture function
+
+- create page functionality and in display items function in app.js
+- user page functionality and what it displays in display items function in app.js
+
+- clear form for user profile after submission
+
+from specification:
+---Всички рецепти:
+- Филтриране по съставки - Създайте HTML селект елемент съдържащ всички съставки, които
+се съдържат във всички рецепти. – (5%).
+
+- Търсене на рецепта по име – инпут поле. При въвеждане на символ трябва да филтрира рецептите. (8%)
+
+---Стилизиране:
+-хедър(10%)
