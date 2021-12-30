@@ -51,7 +51,7 @@ body {
 
 /* ------ HEADER ------ */
 header {
-    height: 100vh;
+    height: 420px;
     margin: auto;
     background-color: #F56600;
     width: 100%;
@@ -77,20 +77,81 @@ header {
 .upper-left-logo-container{
     padding: 20px 10px 20px 17px;
 }
+.its-time{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 #greeting {
     color: white;
     font-family: Helvetica, sans-serif;
     font-size: 62px;
+    font-weight: 600;
     text-align: center;
     padding: 11px 15px 0;
-    max-width: 470px;
+    max-width: 630px;
     /*margin-block-start: 0.67em;*/
     /*margin-block-end: 0.67em;*/
     /*margin-inline-start: 0px;*/
     /*margin-inline-end: 0px;*/
 }
 
+#findRestaurants{
+     color: white;
+     font-family: Helvetica, sans-serif;
+     font-size: 26px;
+     font-weight: 600;
+    padding-bottom: 16px;
+ }
+
+/*Search Field*/
+.search-field{
+    width: 630px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+#address{
+    font-family: Helvetica, sans-serif;
+    border: 1px solid white;
+    color: white;
+    width: 500px;
+    background-color: white;
+    font-size: 15px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    display: flex;
+    flex-direction: row;
+}
+#address::placeholder{
+    color: #bebebe;
+}
+#searchBtn{
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    font-weight: 600;
+    background-color: #1460C9;
+    color: white;
+    width: 130px;
+    border-radius: 0 0 2px 2px;
+
+}
+#searchBtn:hover{
+    background-color: #0953BDFF;
+}
+
+/*Triangle Header*/
+.triangle-header{
+    width: 0px;
+    height: 0px;
+    border-top: 150px solid #F56600;
+    border-left: 150px solid #F56600;
+    border-bottom: 50px transparent;
+    border-right: 50px transparent;
+}
 
 /* ------ MAIN CONTENT ------ */
 
