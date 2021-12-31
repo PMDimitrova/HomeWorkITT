@@ -144,13 +144,23 @@ header {
 }
 
 /*Triangle Header*/
+.subheader{
+    position: relative;
+}
 .triangle-header{
-    width: 0px;
-    height: 0px;
-    border-top: 150px solid #F56600;
-    border-left: 150px solid #F56600;
-    border-bottom: 50px transparent;
-    border-right: 50px transparent;
+    position: absolute;
+    z-index: 10;
+    height: 145px;
+    width: 1500px;
+    background: linear-gradient(to bottom right, #F56600 50%, transparent 50%);
+}
+
+.big-picture-header {
+    position: absolute;
+    z-index: 1;
+    height: 478px;
+    width: 1500px;
+    background-image: url("./assets/sushi_light.jpeg");
 }
 
 /* ------ MAIN CONTENT ------ */
