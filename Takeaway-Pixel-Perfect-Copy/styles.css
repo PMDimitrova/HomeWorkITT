@@ -34,8 +34,12 @@ table {
 textarea {
     white-space: revert;
 }
-/*End of css reset*/
+/*-----------------End of css reset-------------------*/
 
+/*@font-face {*/ /*Not working*/
+/*    font-family: AvantGarde;*/
+/*    src: url("./assets/century-gothic/ITCAvantGardeStd-BoldObl.otf") format("opentype");*/
+/*}*/
 
 body {
     margin: 0;
@@ -75,7 +79,7 @@ header {
 .upper-left-logo-container{
     padding: 20px 10px 20px 17px;
 }
-/*Upper right menu*/
+/*-----Upper right menu-----*/
 .upper-right-container {
     display: flex;
     flex-direction: row;
@@ -91,7 +95,7 @@ header {
     /*padding: 0 16px 0 16px;*/
     border: 1px solid #d7d7d7;
     border-radius: 2px;
-    font-family: Helvetica, sans-serif;
+    font-family: "Helvetica", sans-serif;
     color: white;
     font-size: 13px;
     font-weight: 400;
@@ -134,7 +138,7 @@ header {
     border-radius: 1px;
 }
 
-/*greeting heading*/
+/*-----Greeting heading-----*/
 .its-time{
     display: flex;
     flex-direction: column;
@@ -144,7 +148,8 @@ header {
 
 #greeting {
     color: white;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Helvetica', sans-serif;
+    /*font-family: Helvetica, sans-serif;*/
     font-size: 62px;
     font-weight: 600;
     text-align: center;
@@ -158,13 +163,13 @@ header {
 
 #findRestaurants{
      color: white;
-     font-family: Helvetica, sans-serif;
+     font-family: 'Helvetica', sans-serif;
      font-size: 26px;
      font-weight: 600;
     padding-bottom: 16px;
  }
 
-/*Search Field*/
+/*-----Search Field-----*/
 .search-field{
     width: 630px;
     height: 48px;
@@ -173,7 +178,7 @@ header {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
 }
 #address{
-    font-family: Helvetica, sans-serif;
+    font-family: 'Helvetica', sans-serif;
     border: 1px solid white;
     color: white;
     width: 500px;
@@ -188,7 +193,7 @@ header {
     color: #bebebe;
 }
 #searchBtn{
-    font-family: Helvetica, sans-serif;
+    font-family: 'Helvetica', sans-serif;
     text-align: center;
     font-weight: 600;
     background-color: #1460C9;
@@ -201,10 +206,10 @@ header {
     background-color: #0953BDFF;
 }
 
-/*Triangle Header*/
+/*-----Triangle Header-----*/
 .subheader{
     position: relative;
-    height: 478px;
+    height: 645px;
 }
 .triangle-header{
     position: absolute;
@@ -217,16 +222,117 @@ header {
 .big-picture-header {
     position: absolute;
     z-index: 1;
-    height: 478px;
+    /*height: 478px;*/
+    height: 645px;
     width: 1500px;
     background-image: url("./assets/sushi_light.jpeg");
     background-position-y: 43%;
     max-height: 65vw;
-    /*height: calc(100vh - 430px);*/
     background-size: cover;
     background-position-x: 50%;
 }
 
+/*-----Pop-up User Menu-----*/
+.user-panel{
+    display: none;
+}
+
+/*-----How's Working Steps Menu-----*/
+.hows-working{
+    padding-bottom: 60px;
+    padding-top: 60px;
+}
+.sub-heading-how{
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+    font-weight: 300;
+    font-stretch: 150%;
+    font-size: larger;
+    color: black;
+    padding-top: 8px;
+
+}
+
+.heading-how{
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+    color: #f86600;
+    padding-top: 8px;
+    padding-bottom: 24px;
+}
+
+.steps-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+    margin-bottom: 20px;
+}
+.steps-arrow{
+    width: 24px;
+    /*height: 24px;*/
+    padding-bottom: 120px;
+}
+.step{
+    width: 327px;
+    height: 248px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.step-badge{
+    height: 110px;
+    width: 140px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.step-icon{
+    height: 110px;
+    width: 140px;
+    display: flex;
+    justify-content: center;
+}
+
+.step-image{
+    height: 90px;
+    display: block;
+    z-index: 1;
+    position: absolute;
+}
+
+.step-number{
+    position: absolute;
+    z-index: 10;
+    top: 70%;
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #1260ca;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+    border-radius: 35px;
+    padding-top: 8px;
+}
+
+.step-name{
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+.step-info{
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+    font-weight: lighter;
+    font-size: smaller;
+    color: #666666;
+}
 
 /* ------ MAIN CONTENT ------ */
 
