@@ -42,18 +42,18 @@ body {
     padding: 0;
     border: 0;
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    /*display: flex;*/
+    /*flex-direction: column;*/
 }
 
-.borders{
-    border: 5px green;
-}
+/*.borders{*/
+/*    border: 5px green;*/
+/*}*/
 
 
 /* ------ HEADER ------ */
 header {
-    height: 420px;
+    height: 100%;
     margin: auto;
     background-color: #F56600;
     width: 100%;
@@ -72,13 +72,69 @@ header {
     flex-direction: row;
     width: 50%;
 }
-.upper-right-container {
-    flex-direction: row;
-    width: 50%;
-}
 .upper-left-logo-container{
     padding: 20px 10px 20px 17px;
 }
+/*Upper right menu*/
+.upper-right-container {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    align-items: center;
+    justify-content: right;
+
+}
+
+.be-courier{
+    height: 40px;
+    width: 156px;
+    /*padding: 0 16px 0 16px;*/
+    border: 1px solid #d7d7d7;
+    border-radius: 2px;
+    font-family: Helvetica, sans-serif;
+    color: white;
+    font-size: 13px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.select-language{
+    width: 24px;
+    height: 24px;
+    border: 4px solid white;
+    border-radius: 50%;
+    background-image: url("./assets/bg.svg");
+    background-size: 130%;
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+#bike-logo{
+    width: 30px;
+    margin-right: 8px;
+}
+
+.user-menu-upper-right{
+    height: 20px;
+    width: 24px;
+    margin-right: 10px;
+    padding-bottom: 10px;
+}
+
+.user-menu-upper-right > .line{
+    background-color: white;
+    height: 3px;
+    display: block;
+    margin: 3px;
+    border-radius: 1px;
+}
+
+/*greeting heading*/
 .its-time{
     display: flex;
     flex-direction: column;
@@ -139,7 +195,7 @@ header {
     color: white;
     width: 130px;
     border-radius: 0 0 2px 2px;
-
+    cursor: pointer;
 }
 #searchBtn:hover{
     background-color: #0953BDFF;
