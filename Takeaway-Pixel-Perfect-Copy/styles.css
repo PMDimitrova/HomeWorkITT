@@ -391,9 +391,129 @@ header {
     height: 376px;
 }
 
+/*---------All for you section---------*/
+.all-for-you{
+    height: 670px;
+    background-color: #f7f5f2;
+}
+
 /* ------ FOOTER ------ */
 footer {
-    background-color: #103947;
+    background-color: #0a3847;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    height: 2106px;
+    align-items: center;
+    padding-top: 40px;
+    padding-left: 52px;
+    padding-right: 52px;
+}
+
+.logo-footer{
+    width: 324px;
+    height: 62px;
+    margin-bottom: 56px;
+}
+
+.follow{
+    height: 90px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 850;
+    font-size: smaller;
+    margin-bottom: 88px;
+}
+.follow-us {
+    height: 48px;
+}
+.icons{
+    width: 422px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.social > a > img {
+    height: 22px;
+    cursor: pointer;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.social > a:hover {
+    height: 26px;
+    cursor: pointer;
+}
+
+.lists{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 14px;
+
+}
+.footer-list-links{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.list-title{
+    height: 48px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.link-foot{
+    height: 48px;
+}
+.link-foot {
+    cursor: pointer;
+}
+
+.link-foot:hover{
+    text-decoration: underline;
+    color: white;
+}
+
+hr{
+    background-color: #7a8b93;
+    height: 1px;
+    width: 97%;
+
+}
+
+.footer-links{
+    color: #fefefe;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 14px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row-last-links{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.last-links{
+    margin-left: 30px;
+    padding-top: 20px;
+    /*margin: 40px;*/
+}
+
+#copyright{
+    align-self: center;
+    margin-top: 20px;
 }
 
 /* ------ USER PANEL -------*/
