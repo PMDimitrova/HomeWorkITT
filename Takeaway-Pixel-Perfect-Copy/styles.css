@@ -391,10 +391,109 @@ header {
     height: 376px;
 }
 
-/*---------All for you section---------*/
+/*---------'All for you' section---------*/
 .all-for-you{
     height: 670px;
     background-color: #f7f5f2;
+    padding: 60px 56px;
+    font-family: 'Helvetica', sans-serif;
+    text-align: center;
+}
+
+.all-for-you-headers{
+    height: 98px;
+    margin-bottom: 45px;
+}
+.all-for-you-headers > h3{
+    font-size: 22px;
+    font-weight: lighter;
+    color: #0a3847;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+.all-for-you-headers > h4{
+    font-size: 28px;
+    font-weight: bolder;
+    color: #f86600;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/*Little circles*/
+.circles{
+    display: flex;
+    gap: 210px;
+    position: absolute;
+
+}
+
+.circle-for-you{
+    width: 90px;
+    height: 90px;
+    background-color: #f86600;
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px 0 hsl(0deg 0% 50% / 40%);
+    align-self: center;
+    margin-left: 90px;
+    margin-right: 20px;
+    margin-top: -60px;
+
+}
+.img-icon-circle{
+    padding-top: 20px;
+    width: 45px;
+}
+
+/*card design*/
+.all-for-you-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.section-for-you{
+    width: 306px;
+    height: 350px;
+    border: 1px solid #f8f5f2;
+    padding: 16px;
+    margin: 0 16px 0 16px;
+    box-shadow: 2px 2px 10px 0 hsl(0deg 0% 50% / 40%);
+    background-color: #fff;
+
+
+}
+.all-fy-name{
+    color: #0a3847;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 60px;
+    padding-bottom: 20px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+.tick-section{
+    display: flex;
+    flex-direction: column;
+    /*height: 350px;*/
+}
+.tick-single-wrap{
+    display: flex;
+    flex-direction: row;
+}
+
+.tick-image{
+    width: 25px;
+}
+.tick-text{
+    width: 221px;
+    text-align: left;
+    padding: 0 8px 16px 8px;
+    font-weight: lighter;
+    font-size: 15px;
+    color: #5e5e5e;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ------ FOOTER ------ */
@@ -467,7 +566,7 @@ footer {
 .list-title{
     height: 48px;
     font-weight: bold;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .link-foot{
@@ -486,7 +585,6 @@ hr{
     background-color: #7a8b93;
     height: 1px;
     width: 97%;
-
 }
 
 .footer-links{
@@ -508,7 +606,6 @@ hr{
 .last-links{
     margin-left: 30px;
     padding-top: 20px;
-    /*margin: 40px;*/
 }
 
 #copyright{
