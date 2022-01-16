@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam with Handlebar</title>
+    <link rel="stylesheet" href="./view/styles.css">
+</head>
+<body>
+<div class="container-wrapper">
+    <div class="header-wrapper">
+        <div id="logo">
+            <img id="logo-cooker" src="./data/logo.png" alt="cook">
+        </div>
+        <div id="nav">
+            <ul class="ul-items">
+                <li><a href="#all-recipes">Всички рецепти</a></li>
+                <li><a href="#favorites">Любими рецепти</a></li>
+                <li><a href="#create">Създай рецепта</a></li>
+                <li><a href="#profile">Моят Профил</a></li>
+            </ul>
+        </div>
+        <div id="profile-pic-wrapper">
+            <img id="profile-pic" src="./data/guest.png" alt="profile">
+        </div>
+    </div>
+    <div class="body-wrapper">
+        <div class="ingredients-filter">
+            <label for="select-ingredient">Филтрирайте по съставка:</label>
+            <select id="select-ingredient" class="select-field">
+                <option>...</option>
+<!--                here would the options go// Handlebars-->
+            </select>
+        </div>
+        <div class="search-recipe">
+            <label for="search-field">Търсене на рецепта</label>
+            <input id="search-field" type="text" placeholder="Въведете името или част от него">
+        </div>
+        <div class="rec-lists" id="all-recipes">всички рецепти</div>
+        <div class="rec-lists" id="favorites">любими рецепти</div>
+        <div id="create" >
+            <h2>Моля попълнете данните, за да създадете нова рецепта:</h2>
+            <form id="create-recipe" class="user-form">
+                <div class="name-box input-box">
+                    <label for="rec-title">Име на рецептата:</label>
+                    <input id="rec-title" class="rec-input-box" type="text">
+                </div>
+                <div class="name-box input-box">
+                    <label for="rec-ingredients">Съставки:</label>
+                    <textarea id="rec-ingredients" class="rec-input-box"></textarea>
+                </div>
+                <div class="name-box input-box">
+                    <label for="rec-link">Подобна рецепта:</label>
+                    <input id="rec-link" type="text" class="rec-input-box">
+                </div>
+                <div class=" name-box input-box">
+                    <label for="rec-image">Снимка:</label>
+                    <input id="rec-image" type="text" class="rec-input-box">
+                </div>
+                <button id="save-recipe" class="save-btn">Създай</button>
+            </form>
+        </div>
+        <div id="profile">
+            <div id="user-form" class="user-form">
+                <div class="name-box input-box">
+                    <label for="user-name">Име: </label>
+                    <input id="user-name" type="text">
+                </div>
+                <div class="age-box input-box">
+                    <label for="user-age">Години: </label>
+                    <input id="user-age" type="number">
+                </div>
+                <div class="address-box input-box">
+                    <label for="user-address">Адрес: </label>
+                    <input id="user-address" type="text">
+                </div>
+                <div class="picture-box input-box">
+                    <label for="user-picture">Снимка: </label>
+                    <input id="user-picture" type="text">
+                </div>
+                <button id="save-btn" class="save-btn">Запази</button>
+            </div>
+        </div>
+        <div id="error-page">
+            <div>НЯМА ТАКАВА СТРАНИЦА</div>
+        </div>
+    </div>
+    <div class="footer-wrapper">
+        <div class="created-by">Website created by: Palmina Dimitrova</div>
+        <div class="created-by">All rights reserved &#169 2022</div>
+    </div>
+
+</div>
+
+<script src="./app.js"></script>
+<script src="./model/User.js"></script>
+<script src="./model/Recipe.js"></script>
+<script src="./model/RecipesManager.js"></script>
+<script src="./data/recipes.js"></script>
+
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+
+<script id="recipe-card-template" type="text/x-handlebars-template">
+    {{#each recToRender}}
+        <div class="card">
+            <div class="rec-image-wrapper">
+                <a href={{this.href}} target="_blank">
+                    <img class="rec-image" src={{this.thumbnail}} alt="dish-picture">
+                </a>
+            </div>
+            <h3 class="rec-title">{{this.title}}</h3>
+            <div class="rec-ingredients">{{this.ingredients}}</div>
+            <div class="buttons-box">
+                {{#if this.isLiked}}
+                    <button class="rec-buttons" id="like-btn-{{this.title}}" onclick="likeRecipe({{json this}})">Добави
+                        в любими
+                    </button>
+                {{/if}}
+                {{#unless this.isLiked}}
+                    <button class="rec-buttons" id="like-btn-{{this.title}}" onclick="likeRecipe({{json this}})">
+                        Премахни от любими
+                    </button>
+                {{/unless}}
+                <button class="rec-buttons" id="cook-btn" onclick="cookRecipe({{json this}})">Сготви</button>
+            </div>
+        </div>
+    {{/each}}
+</script>
+
+<script id="select-single-option" type="text/x-handlebars-template">
+    {{#each allIngredients}}
+        <option>{{this}}</option>
+    {{/each}}
+</script>
+
+</body>
+</html>
+<!--            Demo card:
+                                <div class="card">-->
+<!--                    <div class="rec-image-wrapper">-->
+<!--                        <a href="http://allrecipes.com/Recipe/Ginger-Champagne/Detail.aspx" target="_blank">-->
+<!--                            <img class="rec-image" src="http://img.recipepuppy.com/1.jpg" alt="dish-picture">-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    <h3 class="rec-title">Here goes the title</h3>-->
+<!--                    <div class="rec-ingredients">Eggs, butter, etc</div>-->
+<!--                    <div class="buttons-box">-->
+<!--                        <button class="rec-buttons" id="like-btn">Добави в любими</button>-->
+<!--                        <button class="rec-buttons" id="cook-btn">Сготви</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--            Demo page for my profile-->
+<!--            <div id="user-form" class="user-form">-->
+<!--                <div class="name-box input-box">-->
+<!--                    <label for="user-name">Име: </label>-->
+<!--                    <input id="user-name" type="text" >-->
+<!--                </div>-->
+<!--                <div class="age-box input-box">-->
+<!--                    <label for="user-age">Години: </label>-->
+<!--                    <input id="user-age" type="number" >-->
+<!--                </div>-->
+<!--                <div class="address-box input-box">-->
+<!--                    <label for="user-address">Адрес: </label>-->
+<!--                    <input id="user-address" type="text" >-->
+<!--                </div>-->
+<!--                <div class="picture-box input-box">-->
+<!--                    <label for="user-picture">Снимка: </label>-->
+<!--                    <input id="user-picture" type="text" >-->
+<!--                </div>-->
+<!--                <button id="save-btn">Запази</button>-->
+<!--            </div>-->
+
+<!--                Demo for table with Recipes:-->
