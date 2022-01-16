@@ -1,6 +1,5 @@
 /**
  todo
-    - Търсене на рецепта по име – инпут поле. При въвеждане на символ трябва да филтрира рецептите. (8%)
     - local storage as user profile
  */
 window.addEventListener('load', function (){
@@ -214,12 +213,11 @@ window.addEventListener('load', function (){
             fillSelectWithOptions();
 
             document.getElementById('search-field').addEventListener('keyup', () => {
-                let input = document.getElementById('search-field').value;
+                let input = document.getElementById('search-field').value.toLowerCase();
                 let allRec = recipesManager.getAllRecipes();
                 allRecipes.innerHTML = '';
-                let recToRender = allRec.filter(each => each.title.includes(input));
-//HERE
-                console.log(recToRender)
+                let recToRender = allRec.filter(each => each.title.toLowerCase().includes(input));
+                allRecipes.innerHTML = cardTemplate({recToRender});
             });
 
 
