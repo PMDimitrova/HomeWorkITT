@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 04</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #tas{
+            height: 100px;
+            position: absolute;
+            /*top: 40px;*/
+        }
+        #ring {
+            width: 950px;
+            height: 750px;
+            border: 1px solid saddlebrown;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h2>Move Tas with the keyboard arrows</h2>
+        </div>
+        <div class="bottom-part">
+            <div id="ring">
+                <div class="tas"><img id="tas" src="tas.png" alt="tas-looney-toones"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //todo finish:
+        function moveTas(event) {
+            let modifier = 5;
+            console.log(event.key);
+            // let tas = document.getElementById('tas');
+            let offsets = document.getElementById('tas').getBoundingClientRect();
+
+            switch (event.key){
+                case 'ArrowDown':
+                    offsets.top += 10;
+                    break;
+                case 'ArrowUp':
+
+                    break;
+                case 'ArrowLeft':
+
+                    break;
+                case 'ArrowRight':
+
+                    break;
+            }
+
+        }
+
+        document.addEventListener('keydown', moveTas);
+
+    </script>
+</body>
+</html>
