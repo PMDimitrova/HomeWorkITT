@@ -2,8 +2,14 @@ Styling:
 ---#address
 -placeholder for the address must be @the end
 -the location pin image - how?
+-on the steps - calibrate pictures
+-links in the bottom - wrapping does not work as original
 
-up to: styling the triangle orange div in
+Functionality:
+-click on the menu icon -> pop-up user menu; now the div is hidden
 
 Done:
 +on hover the link in the upper left corner should show a hand
+
+List of countries:
+https://www.takeaway.com/assets/images/flags/4x3/lu.svg
