@@ -9,6 +9,24 @@ window.addEventListener('load', function (){
     let profile = document.getElementById('profile');
     let errorPage = document.getElementById('error-page');
     let selectField = document.getElementById('select-ingredient');
+    let ingredientsFilterDiv = document.getElementsByClassName('ingredients-filter')[0];
+    let searchFieldDiv = document.getElementsByClassName('search-recipe')[0];
+
+
+
+
+    function changeFilterAndSearchVisibility(changeTo){
+
+        if (changeTo === 'flex'){
+            ingredientsFilterDiv.style.display = 'flex';
+            searchFieldDiv.style.display = 'flex';
+        }else{
+            ingredientsFilterDiv.style.display = 'none';
+            searchFieldDiv.style.display = 'none';
+        }
+    }
+
+    changeFilterAndSearchVisibility('none');
 
     let user = new User();
     let recipesManager = new RecipesManager();
@@ -219,7 +237,7 @@ window.addEventListener('load', function (){
                 let recToRender = allRec.filter(each => each.title.toLowerCase().includes(input));
                 allRecipes.innerHTML = cardTemplate({recToRender});
             });
-
+            changeFilterAndSearchVisibility('flex');
 
         }else if (hash === 'favorites'){
             allRecipes.style.display = 'none';
@@ -233,6 +251,7 @@ window.addEventListener('load', function (){
             }else {
                 favorites.innerHTML = cardTemplate({recToRender});
             }
+            changeFilterAndSearchVisibility('none');
         }else if (hash === 'create'){
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
@@ -240,6 +259,7 @@ window.addEventListener('load', function (){
             profile.style.display = 'none';
             errorPage.style.display = 'none';
             createNewRecipe();
+            changeFilterAndSearchVisibility('none');
         }else if (hash === 'profile'){
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
@@ -247,6 +267,7 @@ window.addEventListener('load', function (){
             profile.style.display = 'flex';
             errorPage.style.display = 'none';
             displayUsersProfile();
+            changeFilterAndSearchVisibility('none');
         }else if (hash === ''){
             allRecipes.style.display = 'flex';
             favorites.style.display = 'none';
@@ -255,12 +276,14 @@ window.addEventListener('load', function (){
             errorPage.style.display = 'none';
             let allRec = recipesManager.getAllRecipes();
             allRecipes.innerHTML = cardTemplate({allRec});
+            changeFilterAndSearchVisibility('flex');
         }else{
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
             create.style.display = 'none';
             profile.style.display = 'none';
             errorPage.style.display = 'flex';
+            changeFilterAndSearchVisibility('none');
         }
     }
 
