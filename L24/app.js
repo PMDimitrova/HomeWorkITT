@@ -1,5 +1,4 @@
-
-window.addEventListener('load', function (){
+window.addEventListener('load', function () {
     let allRecipes = document.getElementById('all-recipes');
     let favorites = document.getElementById('favorites');
     let create = document.getElementById('create');
@@ -10,14 +9,12 @@ window.addEventListener('load', function (){
     let searchFieldDiv = document.getElementsByClassName('search-recipe')[0];
 
 
+    function changeFilterAndSearchVisibility(changeTo) {
 
-
-    function changeFilterAndSearchVisibility(changeTo){
-
-        if (changeTo === 'flex'){
+        if (changeTo === 'flex') {
             ingredientsFilterDiv.style.display = 'flex';
             searchFieldDiv.style.display = 'flex';
-        }else{
+        } else {
             ingredientsFilterDiv.style.display = 'none';
             searchFieldDiv.style.display = 'none';
         }
@@ -34,9 +31,9 @@ window.addEventListener('load', function (){
         recipesManager.addRecipe(newRec);
     });
 
-    Handlebars.registerHelper('json', function(context) {
+    Handlebars.registerHelper('json', function (context) {
         return JSON.stringify(context);
-     });
+    });
 
     let templateHTML = document.getElementById('recipe-card-template').innerHTML;
     let cardTemplate = Handlebars.compile(templateHTML);
@@ -44,17 +41,17 @@ window.addEventListener('load', function (){
     let templateIngredientHTML = document.getElementById('select-single-option').innerHTML;
     let ingredientTemplate = Handlebars.compile(templateIngredientHTML);
 
-    window.likeRecipe = function (rec){
+    window.likeRecipe = function (rec) {
         //we receive an object, on which the function is called, and then we should search if we have the same obj already
         user.addRemoveRecipeToFavorites(rec);
         let likeBtn = document.getElementById(`like-btn-${rec.title}`);
-        if (likeBtn.innerText === 'Премахни от любими'){
+        if (likeBtn.innerText === 'Премахни от любими') {
             likeBtn.innerText = 'Добави в любими';
-        }else {
+        } else {
             likeBtn.innerText = 'Премахни от любими';
         }
     }
-    window.cookRecipe = function (rec){
+    window.cookRecipe = function (rec) {
         //we receive an object, on which the function is called, and then we should search if we have the same obj already
         user.cookRecipe(rec);
     }
@@ -69,13 +66,13 @@ window.addEventListener('load', function (){
         let thumbnail = document.getElementById('rec-image');
 
         let allFields = {
-            title : '',
-            ingredients : '',
-            href : '',
-            thumbnail : '',
-            allFilled : false,
-            checkFields(){
-                if (this.title && this.href && this.thumbnail && this.ingredients){
+            title: '',
+            ingredients: '',
+            href: '',
+            thumbnail: '',
+            allFilled: false,
+            checkFields() {
+                if (this.title && this.href && this.thumbnail && this.ingredients) {
                     allFields = true;
                     createBtn.disabled = false;
                     return true;
@@ -110,12 +107,12 @@ window.addEventListener('load', function (){
             event.stopImmediatePropagation();
 
             let newRecipe = new Recipe(title.value.trim(), href.value.trim(),
-                                        ingredients.value.trim(), thumbnail.value.trim(), false);
+                ingredients.value.trim(), thumbnail.value.trim(), false);
             recipesManager.addRecipe(newRecipe);
         });
     }
 
-    let displayUsersProfile = function (){
+    let displayUsersProfile = function () {
         profile.innerHTML = '';
         let userProfileWrapper = document.createElement('div');
         userProfileWrapper.classList.add('user-profile-wrapper');
@@ -123,7 +120,7 @@ window.addEventListener('load', function (){
         let userFormDiv = document.createElement('div');
         userFormDiv.classList.add('user-form');
 
-        let createInputField = function (name, innerText, type){
+        let createInputField = function (name, innerText, type) {
             let outerDiv = document.createElement('div');
             outerDiv.classList.add('input-box');
             outerDiv.classList.add(`${name}-box`);
@@ -150,18 +147,18 @@ window.addEventListener('load', function (){
         button.id = 'save-btn';
         button.innerText = 'Запази';
 
-        button.addEventListener('click', function (event){
+        button.addEventListener('click', function (event) {
             let name = document.getElementById('user-name').value;
             let age = document.getElementById('user-age').value;
             let address = document.getElementById('user-address').value;
             let picture = document.getElementById('user-picture').value;
 
-            if ((name.trim().length > 0) && (age>0) && (address.trim().length > 0) && (picture.trim().length > 0)){
+            if ((name.trim().length > 0) && (age > 0) && (address.trim().length > 0) && (picture.trim().length > 0)) {
                 user.changeName(name);
                 user.changeAge(age);
                 user.changeAddress(address);
                 user.changeProfilePic(picture);
-            }else {
+            } else {
                 alert('Моля попълни всички полета с коректни данни!');
             }
         });
@@ -200,7 +197,7 @@ window.addEventListener('load', function (){
         userProfileWrapper.append(tableDiv);
     }
 
-    let handleHashChange = function (){
+    let handleHashChange = function () {
         let hash = location.hash.slice(1);
 
         function fillSelectWithOptions() {
@@ -210,7 +207,7 @@ window.addEventListener('load', function (){
             allRecipes.map(rec => {
                 let recIngr = rec.ingredients.split(', ');
                 recIngr.forEach(ingr => {
-                    if (allIngredients.indexOf(ingr) === -1){
+                    if (allIngredients.indexOf(ingr) === -1) {
                         allIngredients.push(ingr);
                     }
                 });
@@ -219,7 +216,7 @@ window.addEventListener('load', function (){
             selectField.innerHTML = ingredientTemplate({allIngredients});
         }
 
-        if (hash === 'all-recipes'){
+        if (hash === 'all-recipes') {
             allRecipes.style.display = 'flex';
             favorites.style.display = 'none';
             create.style.display = 'none';
@@ -232,11 +229,15 @@ window.addEventListener('load', function (){
             document.getElementById('select-ingredient').addEventListener('change', () => {
                 let selectedOption = document.getElementById('select-ingredient').value;
                 let allRec = recipesManager.getAllRecipes();
+                let recToRender = [];
+                if (selectedOption === 'allspice'){
+                    recToRender = allRec;
+                }else{
+                    recToRender = allRec.filter(each => {
+                        return each.ingredients.indexOf(selectedOption) !== -1;
+                    });
+                }
                 allRecipes.innerHTML = '';
-                let recToRender = allRec.filter(each => {
-                    return each.ingredients.indexOf(selectedOption) !== -1;
-                });
-
                 allRecipes.innerHTML = cardTemplate({recToRender});
             });
 
@@ -249,20 +250,20 @@ window.addEventListener('load', function (){
             });
             changeFilterAndSearchVisibility('flex');
 
-        }else if (hash === 'favorites'){
+        } else if (hash === 'favorites') {
             allRecipes.style.display = 'none';
             favorites.style.display = 'flex';
             create.style.display = 'none';
             profile.style.display = 'none';
             errorPage.style.display = 'none';
             let recToRender = user.getFavoriteRecipes();
-            if (recToRender.length === 0){
+            if (recToRender.length === 0) {
                 favorites.innerHTML = 'Няма любими рецепти';
-            }else {
+            } else {
                 favorites.innerHTML = cardTemplate({recToRender});
             }
             changeFilterAndSearchVisibility('none');
-        }else if (hash === 'create'){
+        } else if (hash === 'create') {
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
             create.style.display = 'flex';
@@ -270,7 +271,7 @@ window.addEventListener('load', function (){
             errorPage.style.display = 'none';
             createNewRecipe();
             changeFilterAndSearchVisibility('none');
-        }else if (hash === 'profile'){
+        } else if (hash === 'profile') {
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
             create.style.display = 'none';
@@ -278,7 +279,7 @@ window.addEventListener('load', function (){
             errorPage.style.display = 'none';
             displayUsersProfile();
             changeFilterAndSearchVisibility('none');
-        }else if (hash === ''){
+        } else if (hash === '') {
             allRecipes.style.display = 'flex';
             favorites.style.display = 'none';
             create.style.display = 'none';
@@ -287,7 +288,7 @@ window.addEventListener('load', function (){
             let allRec = recipesManager.getAllRecipes();
             allRecipes.innerHTML = cardTemplate({allRec});
             changeFilterAndSearchVisibility('flex');
-        }else{
+        } else {
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
             create.style.display = 'none';
