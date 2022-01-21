@@ -33,6 +33,7 @@ window.addEventListener('load', function (){
 
     recipes.forEach(rec => {
         let newRec = new Recipe(rec.title, rec.href, rec.ingredients, rec.thumbnail, liked = 'false');
+        console.log(newRec)
         recipesManager.addRecipe(newRec);
     });
 
@@ -182,7 +183,8 @@ window.addEventListener('load', function (){
         let table = document.createElement('table');
         table.classList.add('table-cooked-user-profile');
 
-        for (const [title, count] of Object.entries(user.cookedRecipes)) {
+        for (const [uuid, count] of Object.entries(user.cookedRecipes)) {
+            let title = recipesManager.getRecByUuid(uuid).title;
             let row = document.createElement('tr');
             row.classList.add('table-row');
             let cellName = document.createElement('td');

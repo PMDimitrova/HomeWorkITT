@@ -5,6 +5,13 @@ class Recipe{
         this.ingredients = ingredients;
         this.thumbnail = thumbnail;
         this.isLiked = liked;
-        this.uuid = title.toLowerCase().replace(' ', '');
+        this.uuid = this.createUuid(title);
+    }
+
+    createUuid(title){
+        while (title.indexOf(' ') !== -1){
+            title = title.toLowerCase().replace(' ', '');
+        }
+        return title;
     }
 }

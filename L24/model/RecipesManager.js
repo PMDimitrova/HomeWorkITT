@@ -6,10 +6,19 @@ class RecipesManager{
     addRecipe(rec){
         if ((this.recipes.indexOf(rec) === -1)){
             this.recipes.unshift(rec);
-            console.log('rec added')
         }
     }
     getAllRecipes(){
         return this.recipes;
+    }
+
+    getRecByUuid(inputId){
+        let result = {};
+        this.recipes.forEach(rec => {
+            if (rec.uuid === inputId){
+                result = rec;
+            }
+        })
+        return result;
     }
 }
