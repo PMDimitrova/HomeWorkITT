@@ -21,14 +21,14 @@ class User{
         document.getElementById('profile-pic').src = pic;
     }
     addRecipeToFavorites(recipe){
-        if (this.favoriteRecipes.indexOf(recipe) === -1){
-            this.favoriteRecipes.push(recipe);
+        if (this.favoriteRecipesUuids.indexOf(recipe) === -1){
+            this.favoriteRecipesUuids.push(recipe);
         }
     }
     removeFromFavorites(recipe){
-        let indexOfRecipe = this.favoriteRecipes.indexOf(recipe);
+        let indexOfRecipe = this.favoriteRecipesUuids.indexOf(recipe);
         if ( indexOfRecipe !== -1){
-            this.favoriteRecipes.splice(indexOfRecipe, 1);
+            this.favoriteRecipesUuids.splice(indexOfRecipe, 1);
         }
     }
 

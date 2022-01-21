@@ -49,14 +49,14 @@ window.addEventListener('load', function (){
             let likeBtn = document.createElement('button');
             likeBtn.classList.add('rec-buttons');
             likeBtn.id = 'like-btn';
-            if (user.favoriteRecipes.indexOf(rec) === -1){
+            if (user.favoriteRecipesUuids.indexOf(rec) === -1){
                 likeBtn.innerText = 'Добави в любими';
                 likeBtn.addEventListener('click', function (){
                     user.addRecipeToFavorites(rec);
                     if (page === allRecipes){
                         displayRecipes(recipesManager.recipes, page);
                     }else if (page === favorites){
-                        displayRecipes(user.favoriteRecipes, page);
+                        displayRecipes(user.favoriteRecipesUuids, page);
                     }
                 });
             }else{
@@ -66,7 +66,7 @@ window.addEventListener('load', function (){
                     if (page === allRecipes){
                         displayRecipes(recipesManager.recipes, page);
                     }else if (page === favorites){
-                        displayRecipes(user.favoriteRecipes, page);
+                        displayRecipes(user.favoriteRecipesUuids, page);
                     }
                 });
             }
@@ -187,7 +187,7 @@ window.addEventListener('load', function (){
             create.style.display = 'none';
             profile.style.display = 'none';
             errorPage.style.display = 'none';
-            displayRecipes(user.favoriteRecipes, favorites);
+            displayRecipes(user.favoriteRecipesUuids, favorites);
         }else if (hash === 'create'){
             allRecipes.style.display = 'none';
             favorites.style.display = 'none';
