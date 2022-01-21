@@ -71,7 +71,9 @@ li:hover{
 
 /*Main part Styles*/
 .body-wrapper{
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 #error-page{
     font-size: 50px;
@@ -89,13 +91,23 @@ li:hover{
 /*Filter by ingredients field*/
 .ingredients-filter {
     height: 35px;
-    border: 1px solid red;
+    margin-top: 20px;
+    margin-right: 75px;
+    align-self: end;
+    justify-content: center;
 }
 .select-field{
     width: 150px;
+    margin-left: 10px;
+
 }
 
 /*Search by recipe title*/
+.search-recipe{
+    margin-top: 20px;
+    align-self: end;
+    margin-right: 75px;
+}
 
 /*Create Recipe*/
 h2{

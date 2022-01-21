@@ -44,18 +44,6 @@ class User{
         console.log(recipeUuid + ' is cooked one more time');
     }
 
-    // getIndexOfRecipe(recipe){
-    //     let index = -1;
-    //     let recID = recipe.uuid;
-    //     for (let i = 0; i < this.favoriteRecipes.length; i++) {
-    //         if (this.favoriteRecipes[i].title === recipe.title){
-    //             index = i;
-    //             break;
-    //         }
-    //     }
-    //     return index;
-    // }
-
     getFavoriteRecipes(){
         return this.favoriteRecipesUuids;
     }

@@ -1,7 +1,4 @@
-/**
- todo
-    - local storage as user profile
- */
+
 window.addEventListener('load', function (){
     let allRecipes = document.getElementById('all-recipes');
     let favorites = document.getElementById('favorites');
@@ -231,6 +228,17 @@ window.addEventListener('load', function (){
             let recToRender = recipesManager.getAllRecipes();
             allRecipes.innerHTML = cardTemplate({recToRender});
             fillSelectWithOptions();
+
+            document.getElementById('select-ingredient').addEventListener('change', () => {
+                let selectedOption = document.getElementById('select-ingredient').value;
+                let allRec = recipesManager.getAllRecipes();
+                allRecipes.innerHTML = '';
+                let recToRender = allRec.filter(each => {
+                    return each.ingredients.indexOf(selectedOption) !== -1;
+                });
+
+                allRecipes.innerHTML = cardTemplate({recToRender});
+            });
 
             document.getElementById('search-field').addEventListener('keyup', () => {
                 let input = document.getElementById('search-field').value.toLowerCase();
