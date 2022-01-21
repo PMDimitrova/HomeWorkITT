@@ -27,7 +27,6 @@ window.addEventListener('load', function () {
 
     recipes.forEach(rec => {
         let newRec = new Recipe(rec.title, rec.href, rec.ingredients, rec.thumbnail, liked = 'false');
-        console.log(newRec)
         recipesManager.addRecipe(newRec);
     });
 
@@ -187,7 +186,7 @@ window.addEventListener('load', function () {
             let cellCount = document.createElement('td');
             cellCount.classList.add('cell-count');
 
-            cellCount.innerText = count;
+            cellCount.innerText = count + '';
 
             row.append(cellName, cellCount);
             table.append(row);
@@ -203,7 +202,6 @@ window.addEventListener('load', function () {
         function fillSelectWithOptions() {
             let allRecipes = recipesManager.getAllRecipes();
             let allIngredients = [];
-            console.log(allRecipes)
             allRecipes.map(rec => {
                 let recIngr = rec.ingredients.split(', ');
                 recIngr.forEach(ingr => {
