@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cats of course</title>
+</head>
+<body>
+<p>Show me random cat and its' info</p>
+
+<p id="breeds"></p>
+
+<h3 id="catName"></h3>
+<p id="catInfo"></p>
+
+<script>
+    loadBreeds();
+
+    function loadBreeds(){
+        let request = new XMLHttpRequest();
+
+        request.open('GET', 'https://api.thecatapi.com/v1/breeds');
+        request.setRequestHeader('x-api-key', 'DEMO-API-KEY')
+
+        request.onload = function (){
+            if (this.status === 200){
+               console.log(JSON.parse(this.responseText));
+            }
+        }
+        request.send();
+    }
+    saveFavorite();
+
+    function saveFavorite(){
+        let myCat = {
+            "image_id": "9ccXTANkbsds",
+            "sub_id": "your-user-1234"
+        }
+        let request = new XMLHttpRequest();
+
+        request.open('POST', 'https://api.thecatapi.com/v1/favourites');
+        request.setRequestHeader('x-api-key', 'DEMO-API-KEY')
+        request.setRequestHeader('Content-Type', 'application/json')
+
+        request.onload = function (){
+            if (this.status === 200){
+                console.log(JSON.parse(this.responseText));
+            }
+        }
+        request.send(JSON.stringify(myCat));
+    }
+</script>
+
+</body>
+</html>
+
+<!--TheCatApi Key; 'x-api-key' header  - 220898b9-5494-49ab-8116-79fe8cce108d-->
