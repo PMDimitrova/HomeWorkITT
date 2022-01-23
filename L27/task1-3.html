@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1, 2, 3</title>
+    <style>
+        .images-div{
+            width: 300px;
+            height: 300px;
+        }
+        .task-wrapper{
+            border: 1px solid green;
+            width: 750px;
+            height: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        #task1img, #task3img{
+            width: 200px;
+        }
+        .small-image{
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="task-wrapper">
+    <h2>Task 1, display random image:</h2>
+    <button id="clickTask1">Click for task 1</button>
+    <div  class="images-div">
+        <img id="task1img">
+    </div>
+</div>
+<div class="task-wrapper">
+    <h2>Task 2, display 5 random images:</h2>
+    <button id="clickTask2">Click for task 1</button>
+    <div id="task2images" class="images-div">
+    </div>
+</div>
+<div class="task-wrapper">
+    <h2>Task 3, display random image:</h2>
+    <button id="clickTask3">Click for task 1</button>
+    <div id="task3img" class="images-div"></div>
+</div>
+
+
+<script>
+    let firstImg = document.getElementById('task1img');
+    document.getElementById('clickTask1').addEventListener('click', () => {
+        fetch('https://dog.ceo/api/breeds/image/random')
+            .then(res => res.json())
+            .then(data => {
+                firstImg.src = data.message;
+            });
+    });
+
+    document.getElementById('clickTask2').addEventListener('click', () => {
+        let allPromises = [];
+        for (let i = 0; i < 5; i++) {
+            let prom = fetch('https://randomfox.ca/floof/').then(res => res.json());
+            allPromises.push(prom);
+        }
+        document.getElementById('task2images').innerHTML = '';
+        Promise.all(allPromises).then(value => {
+            value.map(element => {
+                let currentImg = document.createElement('img');
+                currentImg.src = element.image;
+                currentImg.classList.add('small-image');
+                document.getElementById('task2images').appendChild(currentImg);
+            })
+
+        });
+
+    });
+
+    document.getElementById('clickTask3').addEventListener('click', () => {
+        let allPromises = [];
+        for (let i = 0; i < 5; i++) {
+            let prom = fetch('https://dog.ceo/api/breeds/image/random');
+            allPromises.push(prom);
+        }
+        Promise.race(allPromises)
+            .then(res => res.json())
+            .then(value => {
+                document.getElementById('task3img').innerHTML='';
+                let currentImg = document.createElement('img');
+                currentImg.src = value.message;
+                currentImg.classList.add('small-image');
+                document.getElementById('task3img').appendChild(currentImg);
+        });
+    });
+
+</script>
+</body>
+</html>
