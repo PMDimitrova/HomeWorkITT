@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 4 & 5</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+        .task-wrapper{
+            width: 800px;
+            border: 1px solid rebeccapurple;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+        }
+        .task-title{
+            color: mediumvioletred;
+        }
+        #photos-count{
+            color: orangered;
+        }
+        .button-initial{
+            color: mediumvioletred;
+            background-color: whitesmoke;
+            border: 0px;
+            margin: 5px;
+            width: 150px;
+            height: 45px;
+        }
+        .button-initial:hover{
+            background-color: rgb(209, 198, 220);
+        }
+        .welcome-page{
+            margin: 200px;
+        }
+        #task-4-wrapper{
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+        #task-5-wrapper{
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<p>Doing both tasks here because of Handlebars</p>
+<div class="task-wrapper">
+    <label class="task-title" for="select-user">Select user:</label>
+    <select id="select-user">
+        <option>...</option>
+    </select>
+</div>
+<div class="task-wrapper">
+    <button id="show-task-4" class="button-initial">Show task 4</button>
+    <button id="show-task-5" class="button-initial">Show task 5</button>
+</div>
+
+<div id="task-4-wrapper">
+
+
+    <div id="user-posts" class="task-wrapper">
+        <h3 class="task-title">Task 4.1</h3>
+        <h2>Here are the post of user: </h2><h2 id="user-name-head"></h2>
+        <div id="user-posts-list"></div>
+    </div>
+
+    <div class="task-wrapper">
+        <h3 class="task-title">Task 4.2</h3>
+        <div id="user-albums" ></div>
+    </div>
+
+    <div class="task-wrapper">
+        <h3 class="task-title">Task 4.3</h3>
+        <div>
+            <ul id="todo-list">
+            </ul>
+        </div>
+    </div>
+
+    <div class="task-wrapper">
+        <h3 class="task-title">Task 4.4</h3>
+        <p>This user has:</p>
+        <h4 id="photos-count"></h4>
+        <p>photos in his library</p>
+    </div>
+</div>
+<div id="task-5-wrapper">
+
+</div>
+
+
+
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+<script id="post-template" type="text/x-handlebars-template">
+    <div class="post-by-user">
+        <h3 class="post-header">{{entry.title}}</h3>
+        <p class="post-body">{{entry.body}}</p>
+    </div>
+    <hr>
+</script>
+<script id="post-template-with-comments" type="text/x-handlebars-template">
+    <button type="button" class="collapsible">{{post.title}}</button>
+    <div class="content">
+        {{#each comments}}
+            <p>{{this}}</p>
+        {{/each}}
+    </div>
+    <hr>
+</script>
+
+
+<script id="album-template" type="text/x-handlebars-template">
+    <h4>{{entry.id}}</h4>
+    <p>{{entry.title}}</p>
+</script>
+
+<script>
+    document.getElementById('show-task-4').addEventListener('click', () =>{
+        document.getElementById('task-4-wrapper').style.display = 'flex';
+        document.getElementById('task-5-wrapper').style.display = 'none';
+    })
+    document.getElementById('show-task-5').addEventListener('click', () =>{
+        document.getElementById('task-4-wrapper').style.display = 'none';
+        document.getElementById('task-5-wrapper').style.display = 'flex';
+    })
+
+    let usersEmailId = {};
+
+    fillSelectWithUsers();
+
+    document.getElementById('select-user').addEventListener('change', ev => showPostsOfThisUser(ev));
+
+    function fillSelectWithUsers(){
+        let currentMail = '';
+        let currentOption;
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(data => data.map(user => {
+                currentMail = user.email;
+                currentOption = document.createElement('option');
+                currentOption.innerText = currentMail;
+                document.getElementById('select-user').appendChild(currentOption);
+
+                usersEmailId[currentMail] = user.id;
+            }));
+    }
+
+    function countPhotosInAlbums(userID) {
+        let counter = 0;
+        let albumsIds =[];
+
+        fetch(`https://jsonplaceholder.typicode.com/users/${userID}/albums`)
+            .then(res => res.json())
+            .then(data => data.map(album => {
+                fetch(`https://jsonplaceholder.typicode.com/albums/${album.id}/photos`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let num = data.length;
+                        counter += num;
+                    })
+                    .then(res => {
+                        document.getElementById('photos-count').innerText = counter;
+                    })
+            }));
+    }
+
+    function showNotCompletedToDos(userID) {
+        let notCompletedTasks =[];
+
+        document.getElementById('todo-list').innerHTML = '';
+
+        fetch(`https://jsonplaceholder.typicode.com/users/${userID}/todos`)
+            .then(res => res.json())
+            .then(data => data.map(task => {
+                if (!task.completed){
+                    let taskDescr = task.title;
+                    let taskToAdd = document.createElement('li');
+                    taskToAdd.innerHTML = taskDescr;
+                    document.getElementById('todo-list').appendChild(taskToAdd);
+                }
+            }));
+
+        countPhotosInAlbums(userID);
+    }
+
+    function showAlbumsOfUser(userID) {
+        let templateForAlbum = document.getElementById('album-template').innerHTML;
+        let albumTemplate = Handlebars.compile(templateForAlbum);
+
+        document.getElementById('user-albums').innerHTML = '';
+        fetch(`https://jsonplaceholder.typicode.com/users/${userID}/albums`)
+            .then(res => res.json())
+            .then(albums => {
+                albums.map(entry => {
+                    document.getElementById('user-albums').innerHTML += albumTemplate({entry});
+                })
+            });
+        showNotCompletedToDos(userID);
+    }
+
+    function showPostsOfThisUser(event){
+        let selectedUser = event.target.value;
+        let userId = usersEmailId[selectedUser];
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(res => res.json())
+            .then(users => {
+                users.forEach(us => {
+                    if (us.id === userId){
+                        document.getElementById('user-name-head').innerHTML = us.name;
+                    }
+                })});
+
+        let templateForPost = document.getElementById('post-template').innerHTML;
+        let cardTemplate = Handlebars.compile(templateForPost);
+
+        let templateForCollapsible = document.getElementById('post-template-with-comments').innerHTML;
+        let collapsibleCardTemplate = Handlebars.compile(templateForCollapsible);
+
+        let postTitleCommentLibrary = [];
+        /*
+            {
+            postId: ...
+            title: ...,
+            comments : [comment, comment...]
+            }
+        */
+
+        document.getElementById('user-posts-list').innerHTML = '';
+
+        fetch(`https://jsonplaceholder.typicode.com/users/${userId}/posts`)
+            .then(res => res.json())
+            .then(data => data.map(entry => {
+                document.getElementById('user-posts-list').innerHTML += cardTemplate({entry});
+                let postId = entry.id;
+                let post = {
+                    postId : postId,
+                    title : entry.title,
+                    comments : []
+                }
+                postTitleCommentLibrary.push(post);
+            }))
+            .then(res => {
+                postTitleCommentLibrary.map(post => {
+                    fetch(`https://jsonplaceholder.typicode.com/posts/${post.postId}/comments`)
+                        .then(res => res.json())
+                        .then(data => {
+                            let comments = [];
+                            data.map(comment => {
+                                comments.push(comment.body);
+                            });
+                            postTitleCommentLibrary.forEach(entry => {
+                                if (entry.postId === post.postId){
+                                    entry.comments = comments;
+                                }
+                            });
+                        });
+                });
+            })
+            .then(res => {
+                postTitleCommentLibrary.forEach(post =>{
+                    document.getElementById('task-5-wrapper').innerHTML += collapsibleCardTemplate({post});
+                })
+            })
+
+
+        showAlbumsOfUser(userId);
+    }
+</script>
+
+
+</body>
+</html>
