@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 7 with debounce</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 750px;
+            border: 1px solid lightgrey;
+        }
+        li:hover{
+            cursor: pointer;
+        }
+        .results{
+            display: flex;
+            flex-direction: column;
+            border: 1px solid lightgrey;
+            width: 750px;
+        }
+        img{
+            max-height: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>Search cats by breeds:</h1>
+    <input id="input-cats">
+    <div id="results"></div>
+</div>
+
+<div class="results">
+    <p>Click on the breed for more info:</p>
+    <ul id="list-results">
+    </ul>
+</div>
+
+<div id="breed-result" class="results" style="display: none">
+    <img id="breed-img" src="" alt="cat-picture">
+    <h3 id="breed-name"></h3>
+    <p id="breed-descr"></p>
+</div>
+
+
+<script>
+    function debounce(func, time){
+        let timeoutId;
+        return function(){
+            clearTimeout(timeoutId)
+            timeoutId = setTimeout(func, time);
+        }
+    }
+
+    function searchBreed(){
+        let search = document.getElementById('input-cats').value;
+
+        fetch(`https://api.thecatapi.com/v1/breeds/search?q=${search}`)
+            .then(res => res.json())
+            .then((data => {
+                document.getElementById('list-results').innerHTML = '';
+                data.map(breed => {
+                    let breedEl = document.createElement('li');
+                    breedEl.id = breed.id;
+                    breedEl.innerHTML = breed.name;
+                    breedEl.classList.add('list-item');
+                    document.getElementById('list-results').appendChild(breedEl);
+                })
+            }));
+    }
+
+    let debouncedReact = debounce(searchBreed, 350);
+
+    document.getElementById('input-cats').addEventListener('input', debouncedReact);
+
+    window.addEventListener('click', (event) => {
+        event.stopImmediatePropagation();
+        if(event.target.tagName === 'LI'){
+            let breedId = event.target.id;
+
+
+            fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${breedId}`)
+                .then(res => res.json())
+                .then(data => {
+                    let picture = data[0].url;
+                    let name = data[0].breeds[0].name;
+                    let description = data[0].breeds[0].description;
+
+                    document.getElementById('breed-img').src = picture;
+                    document.getElementById('breed-name').innerText = name;
+                    document.getElementById('breed-descr').innerText = description;
+                    document.getElementById('breed-result').style.display = 'flex';
+                });
+        }
+    });
+
+</script>
+
+</body>
+</html>

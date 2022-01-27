@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 8</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        #add-pages {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        img{
+            height: 20px;
+        }
+        th{
+            border: 1px solid lightgrey;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <h1>List of all cat breeds:</h1>
+    <div id="select-container">
+        <label for="select-per-page">Results per page:</label>
+        <select id="select-per-page">
+            <option value="...">...</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+    </div>
+
+    <div>
+        <table >
+            <tbody id="table-id"></tbody>
+        </table>
+    </div>
+
+    <div id="pagination-div" class="pagination">
+        <a href="#">&laquo;</a>
+        <div id="add-pages">
+            <a href="#">1</a>
+        </div>
+        <a href="#">&raquo;</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script id="table-row-template" type="text/x-handlebars-template">
+    <tr>
+        <th>{{entry.id}}</th>
+        <th><img src="{{entry.url}}" alt="cat-image"></th>
+        <th>{{entry.width}}</th>
+        <th>{{entry.height}}</th>
+    </tr>
+</script>
+<script>
+    let total = 0;
+    fetch(`https://api.thecatapi.com/v1/images/search`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': '220898b9-5494-49ab-8116-79fe8cce108d'
+        }
+    })
+        .then(res => {
+            total = res.headers.get('pagination-count');
+
+            //items per page selector
+            document.getElementById('select-per-page').addEventListener('change', (event) => {
+                let itemsPerPage = event.target.value;
+                getData(event.target.value, 0);
+                let pagesTotal = Math.floor(total / itemsPerPage) + 1;
+                document.getElementById('add-pages').innerHTML = '';
+                for (let i = 1; i <= pagesTotal; i++) {
+                    let newEl = document.createElement('a');
+                    newEl.href = '#';
+                    newEl.id = `page-${i}`;
+                    newEl.innerText = `${i}`;
+                    document.getElementById('add-pages').appendChild(newEl);
+                }
+            });
+
+            //page number selector
+            document.getElementById('pagination-div').addEventListener('click', event => {
+                event.stopImmediatePropagation();
+                let idOfElement = event.target.id;
+                let pageId = -1;
+                if (idOfElement.startsWith('page')) {
+                    pageId = event.target.innerText;
+                    console.log(pageId)
+                }
+                getData(document.getElementById('select-per-page').value, pageId-1);
+            });
+        })
+
+
+
+
+    function getData(itemsPerPage, page){
+        fetch(`https://api.thecatapi.com/v1/images/search?limit=${itemsPerPage}&page=${page}&order=Desc`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': '220898b9-5494-49ab-8116-79fe8cce108d'
+        }})
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                let source = document.getElementById("table-row-template").innerHTML;
+                let template = Handlebars.compile(source);
+                document.getElementById('table-id').innerHTML = '';
+                data.map(entry => {
+                    document.getElementById('table-id').innerHTML += template({entry});
+                })
+            })
+    }
+
+
+</script>
+</body>
+</html>

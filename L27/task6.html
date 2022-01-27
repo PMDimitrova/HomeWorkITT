@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 6</title>
+    <style>
+        label {
+            margin: 5px;
+            font-weight: bold;
+            color: #4D416E;
+        }
+        .result{
+            display: flex;
+            flex-direction: column;
+        }
+        input{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+<h1>Find the IP address</h1>
+
+<input id="inputField" placeholder="enter IP address">
+<button id="subBtn">Check</button>
+
+<div class="result">
+    <label for="country">Country:</label>
+    <input id="country">
+    <label for="city">City:</label>
+    <input id="city">
+    <label for="organisation">Owner:</label>
+    <input id="organisation">
+</div>
+
+<script>
+    document.getElementById('subBtn').addEventListener('click', (event) => {
+        event.preventDefault();
+        let usersIP = document.getElementById('inputField').value;
+
+        fetch(`https://ipapi.co/${usersIP}/json/`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                document.getElementById('country').value = data.country;
+                document.getElementById('city').value = data.city;
+                document.getElementById('organisation').value = data.org;
+            })
+    });
+
+</script>
+
+</body>
+</html>
+
+<!-- 194.153.145.104 -->

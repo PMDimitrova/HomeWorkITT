@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 9</title>
+    <style>
+        .lds-dual-ring {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+        }
+        .lds-dual-ring:after {
+            content: " ";
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 6px solid #af1caf;
+            border-color: #af1caf transparent #af1caf transparent;
+            animation: lds-dual-ring 1.2s linear infinite;
+        }
+        @keyframes lds-dual-ring {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        #click-me{
+            width: 200px;
+        }
+        #dog-final{
+            width: 50%;
+            visibility: hidden;
+        }
+        #progress-div{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: none;
+            position: absolute;
+            background-color: rgb(192, 131, 205, 0.7);
+
+            width: 100vh;
+            height: 100vh;
+            z-index: 5000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Testing slow connection</h1>
+    <button id="click-me">Click here to load a cute dog image</button>
+
+    <div id="progress-div"><div class="lds-dual-ring"></div></div>
+
+    <img id="dog-final" alt="dog-picture">
+
+    <script>
+        document.getElementById('click-me').addEventListener('click', slowlyLoadImg);
+
+        function showHideLoader(action){
+            if (action === 'show'){
+                document.getElementById('progress-div').style.display = 'flex';
+            }else if(action === 'hide'){
+                document.getElementById('progress-div').style.display = 'none';
+            }
+        }
+
+        function slowlyLoadImg(){
+            showHideLoader('show');
+            let url = `https://dog.ceo/api/breeds/image/random`;
+            let go = () => {fetch(`https://flash.siwalik.in/delay/7000/url/${url}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('dog-final').src = data.message;
+                    document.getElementById('dog-final').style.visibility = 'visible';
+                    showHideLoader('hide');
+                })};
+            go();
+        }
+    </script>
+</body>
+</html>

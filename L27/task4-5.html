@@ -48,6 +48,26 @@
             flex-direction: column;
             align-items: center;
         }
+        .collapsible {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+        .active, .collapsible:hover {
+            background-color: #ccc;
+        }
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 <body>
@@ -106,15 +126,9 @@
     </div>
     <hr>
 </script>
-<script id="post-template-with-comments" type="text/x-handlebars-template">
-    <button type="button" class="collapsible">{{post.title}}</button>
-    <div class="content">
-        {{#each comments}}
-            <p>{{this}}</p>
-        {{/each}}
-    </div>
-    <hr>
-</script>
+<!--<script id="comment-template" type="text/x-handlebars-template">-->
+<!--    <p>{{com}}</p>-->
+<!--</script>-->
 
 
 <script id="album-template" type="text/x-handlebars-template">
@@ -223,8 +237,8 @@
         let templateForPost = document.getElementById('post-template').innerHTML;
         let cardTemplate = Handlebars.compile(templateForPost);
 
-        let templateForCollapsible = document.getElementById('post-template-with-comments').innerHTML;
-        let collapsibleCardTemplate = Handlebars.compile(templateForCollapsible);
+        // let templateForCollapsibleComments = document.getElementById('comment-template').innerHTML;
+        // let collapsibleCommentsTemplate = Handlebars.compile(templateForCollapsibleComments);
 
         let postTitleCommentLibrary = [];
         /*
@@ -267,11 +281,50 @@
                 });
             })
             .then(res => {
-                postTitleCommentLibrary.forEach(post =>{
-                    document.getElementById('task-5-wrapper').innerHTML += collapsibleCardTemplate({post});
+                document.getElementById('task-5-wrapper').innerHTML = '';
+                console.log(postTitleCommentLibrary)
+                postTitleCommentLibrary.map(post =>{
+                    // document.getElementById('task-5-wrapper').innerHTML += collapsibleCardTemplate({post});
+                    console.log(post.comments.length)
+                    let postEl = document.createElement('button')
+                    postEl.id = `postId-${post.postId}`;
+                    postEl.type = 'button';
+                    postEl.classList.add('collapsible');
+                    postEl.innerText = post.title;
+
+                    let contentSection = document.createElement('div');
+                    contentSection.classList.add('content');
+                    // console.log(post.postId)
+                    // post.comments.map(com =>{
+                    //     console.log(com)
+                    //     // let paragraph = document.createElement('p');
+                    //     // paragraph.innerText = com;
+                    //     // contentSection.innerHTML += paragraph;
+                    //     // postEl.innerHTML += collapsibleCommentsTemplate({com})
+                    // })
+                    // postEl.innerHTML += contentSection;
+                    document.getElementById('task-5-wrapper').append(postEl);
                 })
             })
-
+            .then(next => {
+            // console.log(document.getElementsByClassName('.collapsible'))
+        })
+// <!--        < script-->
+// <!--        id = "post-template-with-comments"-->
+// <!--        type = "text/x-handlebars-template" >-->
+// <!--            < button-->
+// <!--        type = "button"-->
+// <!--        className = "collapsible" > {-->
+// <!--        {-->
+// <!--            post.title-->
+// <!--        }-->
+// <!--    }</button>-->
+// <!--        <div className="content">-->
+// <!--            {{#each comments}}-->
+// <!--            <p>{{this}}</p>-->
+// <!--            {{/each}}-->
+// <!--                </div>-->
+// <!--                <hr>-->
 
         showAlbumsOfUser(userId);
     }
