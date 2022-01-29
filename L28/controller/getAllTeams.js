@@ -10,7 +10,7 @@ function getAllTeams(){
             let promisesForTeams = [];
 
             leaguesNames.map(entry => {
-                console.log(entry)
+                // console.log(entry)
                 promisesForTeams.push(fetch(`https://www.thesportsdb.com/api/v1/json/2/search_all_teams.php?l=${entry}`).then(res => res.json()))
             })
             Promise.all(promisesForTeams)

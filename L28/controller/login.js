@@ -9,9 +9,9 @@ function loadLogin(){
                 let pass = document.getElementById('loginPassword').value.trim();
                 let success = userStorage.loginUser(username, pass);
                 if (success){
+                    console.log(success)
                     loadHome();
                 }
-                console.log(username, pass)
             })
         });
 

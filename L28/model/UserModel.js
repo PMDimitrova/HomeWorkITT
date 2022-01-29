@@ -28,6 +28,7 @@ let userStorage = (function(){
                     return true;
                 }else {
                     loadAlertRegister('noMatch');
+                    return false;
                 }
             }else{
                 loadAlertRegister('exists');
@@ -43,6 +44,7 @@ let userStorage = (function(){
                 return true;
             }else if (this.users.some(user => user.username === username && user.pass !== password)){
                 loadAlertLogin();
+                return false
             }
         }
     }
