@@ -10,7 +10,7 @@
 <div id="body-container" class="w-75 mx-auto bg-light" style="height: 100vh">
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-success ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Bulgarian Teams</a>
+            <a id="home-logo" class="navbar-brand" href="#">Bulgarian Teams</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,9 +21,9 @@
                             Choose League
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">First Bulgarian League</a></li>
-                            <li><a class="dropdown-item" href="#">Second Bulgarian League</a></li>
-                            <li><a class="dropdown-item" href="#">All teams</a></li>
+                            <li><a id="chooseFirstLeag" class="dropdown-item" href="#">First Bulgarian League</a></li>
+                            <li><a id="chooseSecondLeag" class="dropdown-item" href="#" aria-current="true">Second Bulgarian League</a></li>
+                            <li><a id="chooseAll" class="dropdown-item" href="#">All teams</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -34,13 +34,18 @@
         </div>
     </nav>
     <div id="content">
-
+        <div id="search-bar-container"></div>
+        <div id="teams-container" class="d-flex flex-wrap"></div>
+        <div id="pagination-container"></div>
     </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="model/UserModel.js"></script>
+<script src="controller/createCardOfTeam.js"></script>
+<script src="controller/getAllTeams.js"></script>
+<script src="controller/loadTeamsByLeague.js"></script>
 <script src="controller/loadHome.js"></script>
 <script src="controller/loadAlertRegister.js"></script>
 <script src="controller/loadAlertLogin.js"></script>
