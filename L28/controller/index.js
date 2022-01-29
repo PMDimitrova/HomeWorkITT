@@ -12,5 +12,15 @@
 
     document.getElementById('home-logo').addEventListener('click', loadHome)
 
+    window.addEventListener('click', (event) => {
+        if (event.target.id.startsWith('team-')){
+            if (event.target.parentNode.lastElementChild.style.display === 'none'){
+                event.target.parentNode.lastElementChild.style.display = 'flex';
+            }else{
+                event.target.parentNode.lastElementChild.style.display = 'none';
+            }
+        }
+    })
+
     loadHome();
 })()
