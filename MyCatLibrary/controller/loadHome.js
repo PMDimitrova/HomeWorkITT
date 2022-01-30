@@ -1,5 +1,6 @@
 function loadHome(){
-    document.getElementById('content-container').innerHTML = '';
+    document.getElementById('search-box').innerHTML ='';
+    document.getElementById('main-container').innerHTML ='';
 
     fetch('view/randomCat.hbs')
         .then(res => res.text())

@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a id="homeAllCats" class="nav-link" aria-current="page" href="#">All cat breeds</a>
-                    <a class="nav-link" href="#">Search by breed</a>
+                    <a id="homeSearch" class="nav-link" href="#">Search by breed</a>
                     <a id="homeRandomBtn" class="nav-link" href="#">Random cat picture</a>
                 </div>
             </div>
@@ -27,8 +27,9 @@
     </nav>
 </div>
 
-<div id="content-container" class="bg-light d-flex flex-wrap justify-content-between">
-
+<div id="content-container" >
+<div id="search-box"></div>
+<div id="main-container" class="bg-light d-flex flex-wrap justify-content-between"></div>
 </div>
 
 
@@ -40,6 +41,7 @@
 <script src="controller/loadAllCats.js"></script>
 <script src="controller/loadRegister.js"></script>
 <script src="controller/loadLogin.js"></script>
+<script src="controller/loadSearchPage.js"></script>
 
 <script src="controller/index.js"></script>
 </body>

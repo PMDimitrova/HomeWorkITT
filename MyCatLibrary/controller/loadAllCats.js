@@ -1,5 +1,6 @@
 function loadAllCats(){
-    document.getElementById('content-container').innerHTML ='';
+    document.getElementById('search-box').innerHTML ='';
+    document.getElementById('main-container').innerHTML ='';
     fetch('view/catCard.hbs')
         .then(res => res.text())
         .then(html => {
@@ -12,11 +13,8 @@ function loadAllCats(){
                     data.map(cat => {
                         let templ = Handlebars.compile(html);
                         let result = templ(cat);
-                        document.getElementById('content-container').innerHTML += result;
-                    })
-                    console.log(data)
-                })
-        })
-
-
+                        document.getElementById('main-container').innerHTML += result;
+                    });
+                });
+        });
 }

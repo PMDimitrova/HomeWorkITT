@@ -1,8 +1,12 @@
 function loadLogin() {
+    document.getElementById('search-box').innerHTML ='';
+    document.getElementById('main-container').innerHTML ='';
+
     fetch('view/loginForm.hbs')
         .then(res => res.text())
         .then(templ => {
-            document.getElementById('content-container').innerHTML = templ;
+
+            document.getElementById('main-container').innerHTML = templ;
             document.getElementById('form-login').addEventListener('click', (event) =>{
                 event.preventDefault();
                 let username = document.getElementById('log-username').value;
