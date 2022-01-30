@@ -8,8 +8,11 @@ function loadLogin() {
                 let username = document.getElementById('log-username').value;
                 let password = document.getElementById('log-password').value;
 
-                userStorage.loginUser(username, password);
+                let success = userStorage.loginUser(username, password);
 
+                if (success){
+                    loadHome();
+                }
             })
         })
 }

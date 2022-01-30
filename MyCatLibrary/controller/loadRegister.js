@@ -9,7 +9,11 @@ function loadRegister(){
                 let username = document.getElementById('reg-username').value;
                 let password = document.getElementById('reg-password').value;
                 let repassword = document.getElementById('reg-respassword').value;
-                userStorage.registerUser(username, password, repassword);
+                let success = userStorage.registerUser(username, password, repassword);
+
+                if (success){
+                    loadHome();
+                }
             })
         })
 }
