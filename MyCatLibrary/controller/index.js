@@ -1,6 +1,7 @@
 (function (){
-    // loadHome();
-    loadSearchPage()
+    loadHome();
+    localStorage.removeItem('loggedUser');
+    // loadSearchPage()
     document.getElementById('myCatLibHome').addEventListener('click', loadHome);
 
     document.getElementById('homeSearch').addEventListener('click', loadSearchPage);
@@ -12,5 +13,12 @@
     document.getElementById('logMeBtn').addEventListener('click', loadLogin);
 
     document.getElementById('RegMeBtn').addEventListener('click', loadRegister);
+
+    window.addEventListener('click', (event) => {
+        if (event.target.id.startsWith('like-') ){
+            let catId = event.target.id.slice(5); //getting the id of the cat
+            userStorage.likeCat(catId);
+        }
+    });
 
 })()

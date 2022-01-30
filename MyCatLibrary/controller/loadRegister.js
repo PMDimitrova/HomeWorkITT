@@ -13,7 +13,9 @@ function loadRegister(){
                 let success = userStorage.registerUser(username, password, repassword);
 
                 if (success){
+                    changeLoggedUserController('login');
                     loadHome();
+                    //todo display banner user registered
                 }
             })
         })

@@ -1,6 +1,7 @@
 function loadAllCats(){
     document.getElementById('search-box').innerHTML ='';
     document.getElementById('main-container').innerHTML ='';
+
     fetch('view/catCard.hbs')
         .then(res => res.text())
         .then(html => {

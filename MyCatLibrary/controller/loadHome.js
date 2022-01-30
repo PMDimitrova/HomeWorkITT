@@ -15,7 +15,7 @@ function loadHome(){
                     let catUrl = data[0].url;
                     let templ = Handlebars.compile(html);
                     let result = templ({catUrl});
-                    document.getElementById('content-container').innerHTML = result;
+                    document.getElementById('main-container').innerHTML = result;
                 })
         })
 

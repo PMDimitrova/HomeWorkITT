@@ -36,7 +36,6 @@ function loadSearchPage(){
                                 let templ = Handlebars.compile(html);
                                 let result = templ(c);
                                 document.getElementById('main-container').innerHTML += result;
-                                console.log(c)
                             })
                         })
                 }

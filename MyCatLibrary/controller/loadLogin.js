@@ -15,7 +15,9 @@ function loadLogin() {
                 let success = userStorage.loginUser(username, password);
 
                 if (success){
+                    changeLoggedUserController('login');
                     loadHome();
+                    //todo display banner logged user
                 }
             })
         })

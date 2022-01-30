@@ -26,8 +26,9 @@ let userStorage = (function () {
                 if (password === repassword) {
                     this.users.push(new User(username, password));
                     localStorage.setItem('users', JSON.stringify(this.users));
-                    localStorage.setItem('loggedUser', username);
+                    localStorage.setItem('loggedUser', JSON.stringify({username:username, likedCats:[]}));
                     console.log(`User ${username} registered successfully!`);
+                    changeLoggedUserController();
                     return true;
                 } else {
                     //passwords are not he same
@@ -42,7 +43,7 @@ let userStorage = (function () {
 
         loginUser(username, password) {
             if (this.users.some(us => us.username === username && us.password === password)) {
-                localStorage.setItem('loggedUser', username);
+                localStorage.setItem('loggedUser', JSON.stringify({username:username, likedCats:[]}));
                 console.log(`User ${username} logged in successfully!`);
                 return true;
             } else if (this.users.some(us => us.username === username && us.password !== password)) {
@@ -56,12 +57,23 @@ let userStorage = (function () {
         }
 
         logoutUser(){
-            let currenUser = localStorage.getItem('loggedUser');
-            this.users = this.users.filter(us => us.username !== currenUser);
+            let currenUser = JSON.parse(localStorage.getItem('loggedUser'));
+            let currentUsername = currenUser.username;
+            console.log(currentUsername)
             localStorage.removeItem('loggedUser');
-            if (!(currenUser === 'minka')){
-                localStorage.setItem('users', JSON.stringify(this.users));
+
+            changeLoggedUserController('logout');
+            loadHome();
+            //todo display banner logged
+        }
+
+        likeCat(id){
+            let loggedUsername = JSON.parse(localStorage.getItem('loggedUser')).username;
+            let loggedUserFavorites = JSON.parse(localStorage.getItem('loggedUser')).likedCats;
+            if (loggedUserFavorites.indexOf(id) === -1){
+                loggedUserFavorites.push(id);
             }
+            localStorage.setItem('loggedUser', JSON.stringify({username: loggedUsername, likedCats: loggedUserFavorites}));
         }
 
     }
