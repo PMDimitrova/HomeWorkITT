@@ -8,6 +8,8 @@
 
     document.getElementById('homeAllCats').addEventListener('click', loadAllCats);
 
+    document.getElementById('homePaginationBtn').addEventListener('click', loadPagination);
+
     document.getElementById('homeRandomBtn').addEventListener('click', loadHome);
 
     document.getElementById('logMeBtn').addEventListener('click', loadLogin);
@@ -18,6 +20,8 @@
         if (event.target.id.startsWith('like-') ){
             let catId = event.target.id.slice(5); //getting the id of the cat
             userStorage.likeCat(catId);
+            event.target.classList.add('disabled');
+            console.log('likes')
         }
     });
 
