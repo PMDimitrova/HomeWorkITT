@@ -44,7 +44,7 @@ let userStorage = (function(){
                 return true;
             }else if (this.users.some(user => user.username === username && user.pass !== password)){
                 loadAlertLogin();
-                return false
+                return false;
             }
         }
     }
